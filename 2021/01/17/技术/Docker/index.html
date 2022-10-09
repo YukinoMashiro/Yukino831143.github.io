@@ -1,0 +1,1759 @@
+<!-- yukino:_partial/head.ejs主要完成一些页面初始化工作，但是在页面上基本表现不出来 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    
+    <title itemprop="name">
+      Docker | yukino
+    </title>
+    <!-- yukino:这里是网页标签的小图标 -->
+    
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/css/lib.min.css" media="all">
+    <link rel="stylesheet" href="/css/font.css" media="all">
+    <link rel="stylesheet" href="/css/insight.css" media="all">
+    <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+    <link rel="stylesheet" href="/css/zoom.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+    <!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+    <script>
+      /*Initial Variables*/
+      var mashiro_option = new Object();
+      var mashiro_global = new Object();
+      mashiro_option.NProgressON = true;
+      /*
+       * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+       * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+       */
+      mashiro_option.email_domain = "";
+      mashiro_option.email_name = "";
+      mashiro_option.cookie_version_control = "";
+      mashiro_option.qzone_autocomplete = false;
+      mashiro_option.site_name = "Yukino";
+      mashiro_option.author_name = "";
+      mashiro_option.site_url = "/";
+      mashiro_option.v_appId = "4asHXF3SLvCKEfXTHBmYKjpi-MdYXbMMI";
+      mashiro_option.v_appKey = "xXS4NNFP7X7Su7AIwt86pHXj";
+      mashiro_option.mathjax = "0";
+      mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/";
+      mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+      // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+      // mashiro_option.float_player_on = true;
+
+      /*End of Initial Variables*/
+    </script>
+    <script type="text/javascript">
+      var bg = "https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/1.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/2.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/3.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/4.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/5.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/6.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/7.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/8.webp".split(",");
+      var bgindex = Math.floor(Math.random() * bg.length);
+      if (!!window.ActiveXObject || "ActiveXObject" in window) {
+        //is IE?
+        alert("朋友，IE浏览器未适配哦~");
+      }
+    </script>
+    <style type="text/css">
+      .hljs-ln {
+        border-collapse: collapse;
+      }
+      .hljs-ln td {
+        padding: 0;
+      }
+      .hljs-ln-n:before {
+        content: attr(data-line-number);
+      }
+    </style>
+    <style type="text/css">
+      .site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+    </style>
+  </head>
+</html>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <!--yukino:显示多种社交联系方式,视频播放器,首页下滑箭头-->
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="/">
+          <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico" />
+        </a>
+      </div>
+      <div class="header-info">
+        <p>やはり俺の青春ラブコメはまちがっている</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img
+              class="flipx"
+              src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/next-b.svg"
+            />
+          </li>
+          <!--yukino:显示多种社交联系方式-->
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="github"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/github.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="jianshu"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/jianshu.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="sina"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/sina.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="wangyiyun"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/wangyiyun.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="zhihu"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/zhihu.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="email"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/email.svg" />
+            </a>
+          </li>
+            
+          <li class="wechat">
+            <a href="/#">
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/wechat.png" />
+            </a>
+            <div class="wechatInner">
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/social/wechat.png" />
+            </div>
+          </li>
+            
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/next-b.svg" />
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <!--yukino:播放器-->
+  <div id="video-container" style="">
+    <video
+      style="object-fit: fill;"
+      id="bgvideo"
+      class="video"
+      video-name=""
+      src=""
+      width="auto"
+      preload="auto"
+    ></video>
+    <div id="video-btn" class="loadvideo videolive"></div>
+    <div id="video-add"></div>
+    <div class="video-stu"></div>
+  </div>
+  <!--下滑箭头，点击箭头，页面从主页壁纸滑向博客页面-->
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true"> </i>
+    </span>
+  </div>
+</div>
+
+    <div id="page" class="site wrapper">
+      <!--yukino:头部的menu部分，首页，归档，清单，友人帐...-->
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">Yukino</span>
+            <span class="shironeko"></span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search"> </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1"></div>
+      <div class="line line2"></div>
+      <div class="line line3"></div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <!--yukino:头部的menu部分，首页，归档，清单，友人帐...-->
+          <ul id="menu-new" class="menu">
+            
+            <li>
+              <a href="/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-fort-awesome faa-shake"
+                    aria-hidden="true"
+                  ></i>
+                  首页
+                </span>
+              </a>
+              
+            </li>
+            
+            <li>
+              <a href="/archives">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-archive faa-shake"
+                    aria-hidden="true"
+                  ></i>
+                  归档
+                </span>
+              </a>
+              
+              <ul class="sub-menu">
+                
+                <li>
+                  <a
+                    href="/categories/技术/"
+                  >
+                    <i
+                      class="fa fa-code"
+                      aria-hidden="true"
+                    ></i>
+                    技术
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/生活/"
+                  >
+                    <i
+                      class="fa fa-file-text-o"
+                      aria-hidden="true"
+                    ></i>
+                    生活
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/随想/"
+                  >
+                    <i
+                      class="fa fa-commenting-o"
+                      aria-hidden="true"
+                    ></i>
+                    随想
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/番剧/"
+                  >
+                    <i
+                      class="fa fa-film faa-vertical"
+                      aria-hidden="true"
+                    ></i>
+                    番剧
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/读书/"
+                  >
+                    <i
+                      class="fa fa-th-list faa-bounce"
+                      aria-hidden="true"
+                    ></i>
+                    读书
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/music/"
+                  >
+                    <i
+                      class="fa fa-headphones"
+                      aria-hidden="true"
+                    ></i>
+                    歌单
+                  </a>
+                </li>
+                
+              </ul>
+              
+            </li>
+            
+            <li>
+              <a href="/comment/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-pencil-square-o faa-tada"
+                    aria-hidden="true"
+                  ></i>
+                  留言板
+                </span>
+              </a>
+              
+            </li>
+            
+            <li>
+              <a href="/donate/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-heart faa-pulse"
+                    aria-hidden="true"
+                  ></i>
+                  赞赏
+                </span>
+              </a>
+              
+            </li>
+            
+            <li>
+              <a href="/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-leaf faa-wrench"
+                    aria-hidden="true"
+                  ></i>
+                  关于
+                </span>
+              </a>
+              
+              <ul class="sub-menu">
+                
+                <li>
+                  <a
+                    href="/about/"
+                  >
+                    <i
+                      class="fa fa-meetup"
+                      aria-hidden="true"
+                    ></i>
+                    我？
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/theme-sakura/"
+                  >
+                    <i
+                      class="fa iconfont icon-sakura"
+                      aria-hidden="true"
+                    ></i>
+                    主题
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/lab/"
+                  >
+                    <i
+                      class="fa fa-cogs"
+                      aria-hidden="true"
+                    ></i>
+                    Lab
+                  </a>
+                </li>
+                
+              </ul>
+              
+            </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <!--文章详情页的banner从使用封面图片，修改为自定义，使用md文章中的属性 banner 20200712-->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/banner/1.jpg);" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/banner/1.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      Docker</h1>
+      <p class="entry-census">
+        <span>
+          <a href="/#">
+            <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico">
+          </a>
+        </span>
+        <span>
+          <a href="/#">Yukino</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-1-17<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="1-Docker-安装"><a href="#1-Docker-安装" class="headerlink" title="1. Docker 安装"></a>1. Docker 安装</h1><h1 id="2-Docker-使用"><a href="#2-Docker-使用" class="headerlink" title="2. Docker 使用"></a>2. Docker 使用</h1><h2 id="2-1-介绍"><a href="#2-1-介绍" class="headerlink" title="2.1 介绍"></a>2.1 介绍</h2><ol>
+<li>docker hello world</li>
+</ol>
+<p><code>docker run hello-world</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/image-20210111215654933.png" alt="image-20210111215654933"></p>
+<ol start="2">
+<li>查看镜像</li>
+</ol>
+<p><code>docker images</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/image-20210111215953452.png" alt="image-20210111215953452"></p>
+<ol start="3">
+<li>run 流程</li>
+</ol>
+<p>Docker先在本地寻找镜像，如果本地有，则直接执行。若本地没有，则直接去run。若没有，则去Docker Hub上去下载到本地</p>
+<h2 id="2-2-docker-命令"><a href="#2-2-docker-命令" class="headerlink" title="2.2 docker 命令"></a>2.2 docker 命令</h2><h3 id="2-2-1-帮助命令"><a href="#2-2-1-帮助命令" class="headerlink" title="2.2.1 帮助命令"></a>2.2.1 帮助命令</h3><pre><code class="shell">docker version #显示 docker的版本信息
+docker info #显示docker的系统信息,包括镜像和容器的数量
+docker 命令 --help 
+</code></pre>
+<h3 id="2-2-2-文档"><a href="#2-2-2-文档" class="headerlink" title="2.2.2 文档"></a>2.2.2 文档</h3><h3 id="2-2-3-镜像命令"><a href="#2-2-3-镜像命令" class="headerlink" title="2.2.3 镜像命令"></a>2.2.3 镜像命令</h3><p><code>docker images</code> 查看本地主机所有镜像</p>
+<pre><code class="shell">yukino@Yukinos-Mac-mini  ~  docker images
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+hello-world   latest    bf756fb1ae65   12 months ago   13.3kB
+
+# 解释
+REPOSITORY 镜像的仓库源
+TAG 镜像的标签
+IMAGE ID 镜像 id
+CREATED 创建时间
+SIZE 大小
+
+# 可选项
+  -a, --all             Show all images (default hides intermediate images)
+      --digests         Show digests
+  -f, --filter filter   Filter output based on conditions provided
+      --format string   Pretty-print images using a Go template
+      --no-trunc        Don&#39;t truncate output
+  -q, --quiet           Only show image IDs
+
+</code></pre>
+<p><code>docker search</code> 搜索</p>
+<pre><code class="shell"> yukino@Yukinos-Mac-mini  ~  docker search mysql
+NAME                              DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+mysql                             MySQL is a widely used, open-source relation…   10369     [OK]
+mariadb                           MariaDB is a community-developed fork of MyS…   3842      [OK]
+mysql/mysql-server                Optimized MySQL Server Docker images. Create…   757                  [OK]
+percona                           Percona Server is a fork of the MySQL relati…   519       [OK]
+
+# 可选项
+  -f, --filter filter   Filter output based on conditions provided
+      --format string   Pretty-print search using a Go template
+      --limit int       Max number of search results (default 25)
+      --no-trunc        Don&#39;t truncate output
+
+# 通过 start 进行过滤
+--filter=STARS=3000 # 不小于3000 # docker search mysql --filter=STARS=3000
+</code></pre>
+<p><code>docker pull</code> 下载</p>
+<pre><code class="shell"> yukino@Yukinos-Mac-mini  ~  docker pull mysql
+Using default tag: latest #如果不写tag，默认就是 latest
+latest: Pulling from library/mysql 
+6ec7b7d162b2: Pull complete  # 分层下载，docker image的核心 联合文件系统
+fedd960d3481: Pull complete
+7ab947313861: Pull complete
+64f92f19e638: Pull complete
+3e80b17bff96: Pull complete
+014e976799f9: Pull complete
+59ae84fee1b3: Pull complete
+ffe10de703ea: Pull complete
+657af6d90c83: Pull complete
+98bfb480322c: Pull complete
+6aa3859c4789: Pull complete
+1ed875d851ef: Pull complete
+Digest: sha256:78800e6d3f1b230e35275145e657b82c3fb02a27b2d8e76aac2f5e90c1c30873 #签名
+Status: Downloaded newer image for mysql:latest
+docker.io/library/mysql:latest #真实地址
+
+# 等价
+docker pull mysql
+docker pull docker.io/library/mysql:latest
+
+#指定版本
+docker pull mysql:5.7
+
+yukino@Yukinos-Mac-mini  ~  docker pull mysql:5.7
+5.7: Pulling from library/mysql
+6ec7b7d162b2: Already exists
+fedd960d3481: Already exists
+7ab947313861: Already exists
+64f92f19e638: Already exists
+3e80b17bff96: Already exists
+014e976799f9: Already exists
+59ae84fee1b3: Already exists
+7d1da2a18e2e: Pull complete
+301a28b700b9: Pull complete
+529dc8dbeaf3: Pull complete
+bc9d021dc13f: Pull complete
+Digest: sha256:c3a567d3e3ad8b05dfce401ed08f0f6bf3f3b64cc17694979d5f2e5d78e10173
+Status: Downloaded newer image for mysql:5.7
+docker.io/library/mysql:5.7
+
+yukino@Yukinos-Mac-mini  ~  docker images
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+mysql         5.7       f07dfa83b528   2 weeks ago     448MB
+mysql         latest    a347a5928046   2 weeks ago     545MB
+hello-world   latest    bf756fb1ae65   12 months ago   13.3kB
+</code></pre>
+<p><code>docker rmi</code>删除</p>
+<pre><code class="shell"> yukino@Yukinos-Mac-mini  ~  docker rmi -f f07dfa83b #删除一个镜像
+Untagged: mysql:5.7
+Untagged: mysql@sha256:c3a567d3e3ad8b05dfce401ed08f0f6bf3f3b64cc17694979d5f2e5d78e10173
+Deleted: sha256:f07dfa83b5283f486f1fa1628cb8b4a18a4d071a486708acc5c06243ca7f592a
+Deleted: sha256:1137660d239dd339c83697d1d5cc93542333aaf35c1fd90418f9c0d166c23487
+Deleted: sha256:20c29fc0161bc3cc0addc48ab1aeb70f605a5529590fd32d01502d58d1c6dc10
+Deleted: sha256:8615ae1ee613441540ee54a2c517eb0600a6c83667a79f7ca74acc9ffec4c9a4
+Deleted: sha256:252efab3ecb7891820c5a340645044850d6edc7815c6588450d74b0a743424f4
+
+
+yukino@Yukinos-Mac-mini  ~  docker rmi -f $(docker images -aq) #删除所有镜像
+Untagged: mysql:latest
+Untagged: mysql@sha256:78800e6d3f1b230e35275145e657b82c3fb02a27b2d8e76aac2f5e90c1c30873
+Deleted: sha256:a347a59280467629ae4d70ce555e3f96faca8ff2ff8c57cacc8184bebb681f66
+Deleted: sha256:8c4db4ce0f63c9eec74a2e555bb7e2fa5e2de08389cbc747793aa30bc3ac04e1
+Deleted: sha256:6179be2adc547662cd0ef2cb032b85809ac68923b7ab9c71e5a21b88bbe7f542
+Deleted: sha256:17d702350e6aa7f240ca23090d24b059f5c324e292a77b5069225e76e0b51dd6
+Deleted: sha256:5c5f95733957fd96300b5265d6b2df728415ed62e7b4b30eadd7d836d48187bf
+Deleted: sha256:fbf118fadaf5230c8df9a3b51c608393a8f3adb99c089ea2db253438efab1a0e
+Deleted: sha256:43b82d704a10e6d022fa3f31a5f827a00e339ee21dd2849a9b120ab82be9af71
+Deleted: sha256:a4994702421d2b9a74c4f3810aa7ac09990e849905f23a1d8f358c826d58501f
+Deleted: sha256:36c598c7a6f90abf6d67cde4a58b0747bfbcc7441d3b782bdeea7cda8c9ad7b6
+Deleted: sha256:86f598b4f8200bdd4ae752f916154e4e29d5b4c211bb124eb150b9957a3e0141
+Deleted: sha256:9e979d97f92bf78a225c77c6b4ba74eb2e03efb95b19b69206cd17cee15a4b26
+Deleted: sha256:aff48ce4678f78d83d7e9bfb9e88cd951c3da52da08779e99b6082edd1cc66f3
+Deleted: sha256:87c8a1d8f54f3aa4e05569e8919397b65056aa71cdf48b7f061432c98475eee9
+Untagged: hello-world:latest
+Untagged: hello-world@sha256:1a523af650137b8accdaed439c17d684df61ee4d74feac151b5b337bd29e7eec
+Deleted: sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b
+</code></pre>
+<h3 id="2-2-4-容器命令"><a href="#2-2-4-容器命令" class="headerlink" title="2.2.4 容器命令"></a>2.2.4 容器命令</h3><p><strong>下载一个centos镜像来学习</strong></p>
+<p><code>docker pull centos</code></p>
+<p><strong>新建容器并启动</strong></p>
+<p><code>docker run [可选参数] image</code></p>
+<pre><code class="shell">#参数说明
+--name=“name” 容器名字
+-d            后台运行
+-it           使用交互方式运行，进入容器查看内容
+-p            指定容器端口 -p 8080:8080
+     -p  主机端口:容器端口
+     -p  ip:主机端口:容器端口
+     -p  容器端口
+-P            随机指定端口
+
+# 启动并进入容器
+yukino@Yukinos-Mac-mini  ~  docker run -it centos /bin/sh
+sh-4.4#
+# 退出容器
+exit
+
+</code></pre>
+<p><strong>列出所有的运行的容器</strong></p>
+<pre><code class="shell">yukino@Yukinos-Mac-mini  ~  docker ps #正在运行的容器
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+ yukino@Yukinos-Mac-mini  ~  docker ps -a # 列出当前正在运行游戏 + 历史运行过的容器
+CONTAINER ID   IMAGE          COMMAND      CREATED              STATUS                          PORTS     NAMES
+58058be7aaee   centos         &quot;/bin/sh&quot;    About a minute ago   Exited (0) 11 seconds ago                 friendly_khorana
+d163d1d78b57   centos         &quot;/bin/sh&quot;    2 minutes ago        Exited (0) About a minute ago             charming_curie
+4a7f75643f52   centos         &quot;/bin/zsh&quot;   3 minutes ago        Created                                   objective_ellis
+f8639e957394   centos         &quot;/bin/sh&quot;    3 minutes ago        Exited (0) 3 minutes ago                  reverent_wing
+76a01cac119f   bf756fb1ae65   &quot;/hello&quot;     2 hours ago          Exited (0) 2 hours ago                    frosty_edison
+
+# 可选项
+  -a, --all             Show all containers (default shows just running)
+  -f, --filter filter   Filter output based on conditions provided
+      --format string   Pretty-print containers using a Go template
+  -n, --last int        Show n last created containers (includes all states) (default -1)
+  -l, --latest          Show the latest created container (includes all states)
+      --no-trunc        Don&#39;t truncate output
+  -q, --quiet           Only display container IDs
+  -s, --size            Display total file sizes
+</code></pre>
+<p><strong>容器退出</strong></p>
+<pre><code class="shell">exit # 容器停止退出
+cmd(中间那个键) + p + q #容器不停止退出
+</code></pre>
+<p><strong>删除容器</strong></p>
+<pre><code class="shell">docker rm 容器id #删除指定容器，不能删除正在运行的容器， -f 强制删除
+docker rm -f $(docker ps -aq) #删除所有容器 
+docker ps -a -q|xargs docker rm -f  #删除所有容器
+</code></pre>
+<p><strong>启动和停止容器的操作</strong></p>
+<pre><code class="shell">docker start 容器id   # 启动容器
+docker restart 容器id # 重启容器
+docker stop 容器id    # 停止容器
+docker kill 容器id    # 强制停止当前容器
+</code></pre>
+<h3 id="2-2-5-常用其他命令"><a href="#2-2-5-常用其他命令" class="headerlink" title="2.2.5 常用其他命令"></a>2.2.5 常用其他命令</h3><p><strong>后台启动容器</strong></p>
+<pre><code class="shell">yukino@Yukinos-Mac-mini  ~  docker run -d centos # 后台启动容器
+0ed9981b2b99a49d7a6badda06d6b5214adf7f4abd12e69b59a3740944c86da2
+ yukino@Yukinos-Mac-mini  ~  docker ps # 发现没有起来
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+# docker 容器使用后台运行，必须要一个前台进程，docker发现没有应用，就会自动停止
+# nginx 容器启动后，发现自己没有提供服务，就会立刻停止，就是没有程序了
+</code></pre>
+<p><strong>查看日志</strong></p>
+<pre><code class="shell"># 自己编写一段shell脚本
+yukino@Yukinos-Mac-mini  ~  docker run -d centos /bin/sh -c &quot;while true;do echo hello;sleep 1;done&quot;
+7e367211d5e06cf782c23ed36e8bd915e79c7d37290f340b08f49c121ac13859
+# 查看容器
+ yukino@Yukinos-Mac-mini  ~  docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS     NAMES
+7e367211d5e0   centos    &quot;/bin/sh -c &#39;while t…&quot;   6 seconds ago   Up 5 seconds             mystifying_ardinghelli
+# 查看log
+ yukino@Yukinos-Mac-mini  ~  docker logs -tf --tail 10 7e367211d5e0
+2021-01-11T16:03:59.195128830Z hello
+2021-01-11T16:04:00.197724751Z hello
+2021-01-11T16:04:01.200070913Z hello
+2021-01-11T16:04:02.204645447Z hello
+2021-01-11T16:04:03.209292239Z hello
+
+# 可选项
+Options:
+      --details        Show extra details provided to logs
+  -f, --follow         Follow log output
+      --since string   Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
+  -n, --tail string    Number of lines to show from the end of the logs (default &quot;all&quot;)
+  -t, --timestamps     Show timestamps
+      --until string   Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
+</code></pre>
+<p><strong>查看容器中的进程信息</strong></p>
+<pre><code class="shell"> yukino@Yukinos-Mac-mini  ~  docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS     NAMES
+7e367211d5e0   centos    &quot;/bin/sh -c &#39;while t…&quot;   5 minutes ago   Up 5 minutes             mystifying_ardinghelli
+
+# 查看进程信息
+ yukino@Yukinos-Mac-mini  ~  docker top 7e367211d5e0
+PID                 USER                TIME                COMMAND
+3248                root                0:00                /bin/sh -c while true;do echo hello;sleep 1;done
+3641                root                0:00                {sleep} /usr/bin/coreutils --coreutils-prog-shebang=sleep /usr/bin/sleep 1
+</code></pre>
+<p><strong>查看镜像元数据</strong></p>
+<pre><code class="shell">docker inspect 7e367211d5e0
+</code></pre>
+<pre><code class="json">[
+    {
+        &quot;Id&quot;: &quot;7e367211d5e06cf782c23ed36e8bd915e79c7d37290f340b08f49c121ac13859&quot;,
+        &quot;Created&quot;: &quot;2021-01-11T16:03:29.779361521Z&quot;,
+        &quot;Path&quot;: &quot;/bin/sh&quot;,
+        &quot;Args&quot;: [
+            &quot;-c&quot;,
+            &quot;while true;do echo hello;sleep 1;done&quot;
+        ],
+        &quot;State&quot;: {
+            &quot;Status&quot;: &quot;running&quot;,
+            &quot;Running&quot;: true,
+            &quot;Paused&quot;: false,
+            &quot;Restarting&quot;: false,
+            &quot;OOMKilled&quot;: false,
+            &quot;Dead&quot;: false,
+            &quot;Pid&quot;: 3248,
+            &quot;ExitCode&quot;: 0,
+            &quot;Error&quot;: &quot;&quot;,
+            &quot;StartedAt&quot;: &quot;2021-01-11T16:03:30.085701324Z&quot;,
+            &quot;FinishedAt&quot;: &quot;0001-01-01T00:00:00Z&quot;
+        },
+        &quot;Image&quot;: &quot;sha256:300e315adb2f96afe5f0b2780b87f28ae95231fe3bdd1e16b9ba606307728f55&quot;,
+        &quot;ResolvConfPath&quot;: &quot;/var/lib/docker/containers/7e367211d5e06cf782c23ed36e8bd915e79c7d37290f340b08f49c121ac13859/resolv.conf&quot;,
+        &quot;HostnamePath&quot;: &quot;/var/lib/docker/containers/7e367211d5e06cf782c23ed36e8bd915e79c7d37290f340b08f49c121ac13859/hostname&quot;,
+        &quot;HostsPath&quot;: &quot;/var/lib/docker/containers/7e367211d5e06cf782c23ed36e8bd915e79c7d37290f340b08f49c121ac13859/hosts&quot;,
+        &quot;LogPath&quot;: &quot;/var/lib/docker/containers/7e367211d5e06cf782c23ed36e8bd915e79c7d37290f340b08f49c121ac13859/7e367211d5e06cf782c23ed36e8bd915e79c7d37290f340b08f49c121ac13859-json.log&quot;,
+        &quot;Name&quot;: &quot;/mystifying_ardinghelli&quot;,
+        &quot;RestartCount&quot;: 0,
+        &quot;Driver&quot;: &quot;overlay2&quot;,
+        &quot;Platform&quot;: &quot;linux&quot;,
+        &quot;MountLabel&quot;: &quot;&quot;,
+        &quot;ProcessLabel&quot;: &quot;&quot;,
+        &quot;AppArmorProfile&quot;: &quot;&quot;,
+        &quot;ExecIDs&quot;: null,
+        &quot;HostConfig&quot;: {
+            &quot;Binds&quot;: null,
+            &quot;ContainerIDFile&quot;: &quot;&quot;,
+            &quot;LogConfig&quot;: {
+                &quot;Type&quot;: &quot;json-file&quot;,
+                &quot;Config&quot;: {}
+            },
+            &quot;NetworkMode&quot;: &quot;default&quot;,
+            &quot;PortBindings&quot;: {},
+            &quot;RestartPolicy&quot;: {
+                &quot;Name&quot;: &quot;no&quot;,
+                &quot;MaximumRetryCount&quot;: 0
+            },
+            &quot;AutoRemove&quot;: false,
+            &quot;VolumeDriver&quot;: &quot;&quot;,
+            &quot;VolumesFrom&quot;: null,
+            &quot;CapAdd&quot;: null,
+            &quot;CapDrop&quot;: null,
+            &quot;Capabilities&quot;: null,
+            &quot;Dns&quot;: [],
+            &quot;DnsOptions&quot;: [],
+            &quot;DnsSearch&quot;: [],
+            &quot;ExtraHosts&quot;: null,
+            &quot;GroupAdd&quot;: null,
+            &quot;IpcMode&quot;: &quot;private&quot;,
+            &quot;Cgroup&quot;: &quot;&quot;,
+            &quot;Links&quot;: null,
+            &quot;OomScoreAdj&quot;: 0,
+            &quot;PidMode&quot;: &quot;&quot;,
+            &quot;Privileged&quot;: false,
+            &quot;PublishAllPorts&quot;: false,
+            &quot;ReadonlyRootfs&quot;: false,
+            &quot;SecurityOpt&quot;: null,
+            &quot;UTSMode&quot;: &quot;&quot;,
+            &quot;UsernsMode&quot;: &quot;&quot;,
+            &quot;ShmSize&quot;: 67108864,
+            &quot;Runtime&quot;: &quot;runc&quot;,
+            &quot;ConsoleSize&quot;: [
+                0,
+                0
+            ],
+            &quot;Isolation&quot;: &quot;&quot;,
+            &quot;CpuShares&quot;: 0,
+            &quot;Memory&quot;: 0,
+            &quot;NanoCpus&quot;: 0,
+            &quot;CgroupParent&quot;: &quot;&quot;,
+            &quot;BlkioWeight&quot;: 0,
+            &quot;BlkioWeightDevice&quot;: [],
+            &quot;BlkioDeviceReadBps&quot;: null,
+            &quot;BlkioDeviceWriteBps&quot;: null,
+            &quot;BlkioDeviceReadIOps&quot;: null,
+            &quot;BlkioDeviceWriteIOps&quot;: null,
+            &quot;CpuPeriod&quot;: 0,
+            &quot;CpuQuota&quot;: 0,
+            &quot;CpuRealtimePeriod&quot;: 0,
+            &quot;CpuRealtimeRuntime&quot;: 0,
+            &quot;CpusetCpus&quot;: &quot;&quot;,
+            &quot;CpusetMems&quot;: &quot;&quot;,
+            &quot;Devices&quot;: [],
+            &quot;DeviceCgroupRules&quot;: null,
+            &quot;DeviceRequests&quot;: null,
+            &quot;KernelMemory&quot;: 0,
+            &quot;KernelMemoryTCP&quot;: 0,
+            &quot;MemoryReservation&quot;: 0,
+            &quot;MemorySwap&quot;: 0,
+            &quot;MemorySwappiness&quot;: null,
+            &quot;OomKillDisable&quot;: false,
+            &quot;PidsLimit&quot;: null,
+            &quot;Ulimits&quot;: null,
+            &quot;CpuCount&quot;: 0,
+            &quot;CpuPercent&quot;: 0,
+            &quot;IOMaximumIOps&quot;: 0,
+            &quot;IOMaximumBandwidth&quot;: 0,
+            &quot;MaskedPaths&quot;: [
+                &quot;/proc/asound&quot;,
+                &quot;/proc/acpi&quot;,
+                &quot;/proc/kcore&quot;,
+                &quot;/proc/keys&quot;,
+                &quot;/proc/latency_stats&quot;,
+                &quot;/proc/timer_list&quot;,
+                &quot;/proc/timer_stats&quot;,
+                &quot;/proc/sched_debug&quot;,
+                &quot;/proc/scsi&quot;,
+                &quot;/sys/firmware&quot;
+            ],
+            &quot;ReadonlyPaths&quot;: [
+                &quot;/proc/bus&quot;,
+                &quot;/proc/fs&quot;,
+                &quot;/proc/irq&quot;,
+                &quot;/proc/sys&quot;,
+                &quot;/proc/sysrq-trigger&quot;
+            ]
+        },
+        &quot;GraphDriver&quot;: {
+            &quot;Data&quot;: {
+                &quot;LowerDir&quot;: &quot;/var/lib/docker/overlay2/acddf2185fe63f216521b671abaeca46264f46939e439026c4b0a6151da02c5d-init/diff:/var/lib/docker/overlay2/329520e3e0d88d8454fba204a80c88b7f6ef891bb8dbd6691761ac4d95c5177d/diff&quot;,
+                &quot;MergedDir&quot;: &quot;/var/lib/docker/overlay2/acddf2185fe63f216521b671abaeca46264f46939e439026c4b0a6151da02c5d/merged&quot;,
+                &quot;UpperDir&quot;: &quot;/var/lib/docker/overlay2/acddf2185fe63f216521b671abaeca46264f46939e439026c4b0a6151da02c5d/diff&quot;,
+                &quot;WorkDir&quot;: &quot;/var/lib/docker/overlay2/acddf2185fe63f216521b671abaeca46264f46939e439026c4b0a6151da02c5d/work&quot;
+            },
+            &quot;Name&quot;: &quot;overlay2&quot;
+        },
+        &quot;Mounts&quot;: [],
+        &quot;Config&quot;: {
+            &quot;Hostname&quot;: &quot;7e367211d5e0&quot;,
+            &quot;Domainname&quot;: &quot;&quot;,
+            &quot;User&quot;: &quot;&quot;,
+            &quot;AttachStdin&quot;: false,
+            &quot;AttachStdout&quot;: false,
+            &quot;AttachStderr&quot;: false,
+            &quot;Tty&quot;: false,
+            &quot;OpenStdin&quot;: false,
+            &quot;StdinOnce&quot;: false,
+            &quot;Env&quot;: [
+                &quot;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;
+            ],
+            &quot;Cmd&quot;: [
+                &quot;/bin/sh&quot;,
+                &quot;-c&quot;,
+                &quot;while true;do echo hello;sleep 1;done&quot;
+            ],
+            &quot;Image&quot;: &quot;centos&quot;,
+            &quot;Volumes&quot;: null,
+            &quot;WorkingDir&quot;: &quot;&quot;,
+            &quot;Entrypoint&quot;: null,
+            &quot;OnBuild&quot;: null,
+            &quot;Labels&quot;: {
+                &quot;org.label-schema.build-date&quot;: &quot;20201204&quot;,
+                &quot;org.label-schema.license&quot;: &quot;GPLv2&quot;,
+                &quot;org.label-schema.name&quot;: &quot;CentOS Base Image&quot;,
+                &quot;org.label-schema.schema-version&quot;: &quot;1.0&quot;,
+                &quot;org.label-schema.vendor&quot;: &quot;CentOS&quot;
+            }
+        },
+        &quot;NetworkSettings&quot;: {
+            &quot;Bridge&quot;: &quot;&quot;,
+            &quot;SandboxID&quot;: &quot;273cc9e3080fa62dc986a5c0b8da4ef8c86edaa2f7af92a241e388638c7647c6&quot;,
+            &quot;HairpinMode&quot;: false,
+            &quot;LinkLocalIPv6Address&quot;: &quot;&quot;,
+            &quot;LinkLocalIPv6PrefixLen&quot;: 0,
+            &quot;Ports&quot;: {},
+            &quot;SandboxKey&quot;: &quot;/var/run/docker/netns/273cc9e3080f&quot;,
+            &quot;SecondaryIPAddresses&quot;: null,
+            &quot;SecondaryIPv6Addresses&quot;: null,
+            &quot;EndpointID&quot;: &quot;d147d056858d03efcdb9ce0a1a14552873ebe1c87c55514523def2dc879b206b&quot;,
+            &quot;Gateway&quot;: &quot;172.17.0.1&quot;,
+            &quot;GlobalIPv6Address&quot;: &quot;&quot;,
+            &quot;GlobalIPv6PrefixLen&quot;: 0,
+            &quot;IPAddress&quot;: &quot;172.17.0.2&quot;,
+            &quot;IPPrefixLen&quot;: 16,
+            &quot;IPv6Gateway&quot;: &quot;&quot;,
+            &quot;MacAddress&quot;: &quot;02:42:ac:11:00:02&quot;,
+            &quot;Networks&quot;: {
+                &quot;bridge&quot;: {
+                    &quot;IPAMConfig&quot;: null,
+                    &quot;Links&quot;: null,
+                    &quot;Aliases&quot;: null,
+                    &quot;NetworkID&quot;: &quot;7c3627e0ba0582a218c280f8fbb0bd6cca3d3325582b5cedd1b8b6410de986cd&quot;,
+                    &quot;EndpointID&quot;: &quot;d147d056858d03efcdb9ce0a1a14552873ebe1c87c55514523def2dc879b206b&quot;,
+                    &quot;Gateway&quot;: &quot;172.17.0.1&quot;,
+                    &quot;IPAddress&quot;: &quot;172.17.0.2&quot;,
+                    &quot;IPPrefixLen&quot;: 16,
+                    &quot;IPv6Gateway&quot;: &quot;&quot;,
+                    &quot;GlobalIPv6Address&quot;: &quot;&quot;,
+                    &quot;GlobalIPv6PrefixLen&quot;: 0,
+                    &quot;MacAddress&quot;: &quot;02:42:ac:11:00:02&quot;,
+                    &quot;DriverOpts&quot;: null
+                }
+            }
+        }
+    }
+]
+</code></pre>
+<p><strong>进入当前正在运行的容器</strong></p>
+<pre><code class="shell"># 我们通常容器都是使用后台方式运行的，需要进入容器，修改一些配置
+
+yukino@Yukinos-Mac-mini  ~  docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS     NAMES
+7e367211d5e0   centos    &quot;/bin/sh -c &#39;while t…&quot;   13 minutes ago   Up 13 minutes             mystifying_ardinghelli
+
+# 方式1:以交互模式进入容器
+yukino@Yukinos-Mac-mini  ~  docker exec -it 7e367211d5e0 /bin/bash
+[root@7e367211d5e0 /]# ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 16:03 ?        00:00:00 /bin/sh -c while true;do echo hello;sleep 1;done
+root       864     0  0 16:17 pts/0    00:00:00 /bin/bash
+root      1023     1  0 16:20 ?        00:00:00 /usr/bin/coreutils --coreutils-prog-shebang=sleep /usr/bin/sleep 1
+root      1024   864  0 16:20 pts/0    00:00:00 ps -ef
+
+# 方式2: docker attach
+yukino@Yukinos-Mac-mini  ~  docker attach e367211d5e
+正在执行当前的代码
+
+# docker exec   # 进入容器开启一个新的终端，可以在里面操作(常用)
+# docker attach # 进入容器正在执行的终端，不会启动新的进程
+</code></pre>
+<p><strong>从容器内拷贝文件到主机上</strong></p>
+<pre><code class="shell">docker cp f03fddef487a:/home/tmp.md .
+
+# 拷贝是一个手动过程，未来我们通过-V 卷的技术，可以实现自动同步 /home /home
+</code></pre>
+<h3 id="2-2-6-docker-命令小结"><a href="#2-2-6-docker-命令小结" class="headerlink" title="2.2.6 docker 命令小结"></a>2.2.6 docker 命令小结</h3><p> <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/2018071915491757.png" alt="2018071915491757"></p>
+<h3 id="2-2-7-docker-tomcat启动"><a href="#2-2-7-docker-tomcat启动" class="headerlink" title="2.2.7 docker tomcat启动"></a>2.2.7 docker tomcat启动</h3><pre><code class="shell"># 官方使用
+docker run -it --rm tomcat:9.0# 一般用来测试，用完就删除容易(镜像还在)，一般不这样用
+
+# 下载启动
+docker pull tomcat:9.0
+#启动运行
+docker run -d -p 3355:8080 --name tomcat01 tomcat:9.0 #后台启动，宿主机端口映射3355映射到容器端口8080
+
+# 发现浏览器访问 http://localhost:3355/ 出错。
+#进入tomcat
+docker exec -it tomcat01 /bin/sh
+进入 tomcat下的webapps，发现为空
+# 拷贝内容，刷新浏览器访问 http://localhost:3355/，成功
+cp -r webapps.dist/* webapps/
+
+
+</code></pre>
+<h3 id="2-2-8-可视化"><a href="#2-2-8-可视化" class="headerlink" title="2.2.8 可视化"></a>2.2.8 可视化</h3><p><strong>portainer</strong></p>
+<pre><code class="shell">docker run -d -p 8088:9000 \
+--restart=always -v /var/run/docker.sock:/var/run/docker.sock --privileged=true portainer/portainer
+</code></pre>
+<h3 id="2-2-9-commit-镜像"><a href="#2-2-9-commit-镜像" class="headerlink" title="2.2.9 commit 镜像"></a>2.2.9 commit 镜像</h3><pre><code class="shell"># 启动容器
+docker run -it -p 8080:8080 tomcat:9.0
+# 进入容器
+docker exec -it d239c0637046 /bin/sh
+# 添加webapps应用
+cp -r webapps.dist/* webapps/
+# commit 成一个新镜像
+yukino@Yukinos-Mac-mini  ~  docker commit -a=&quot;yukino&quot; -m=&quot;add webapps app&quot; d239c0637046 tomcat02:1.0
+sha256:98532da3cc1bbd014972e720081c187023f2172f9caaced66e94cd2f5c48b85c
+ yukino@Yukinos-Mac-mini  ~  docker images
+REPOSITORY            TAG       IMAGE ID       CREATED         SIZE
+tomcat02              1.0       98532da3cc1b   5 seconds ago   653MB
+
+# 使用一个新镜像
+docker run -it -p 8081:8080 tomcat02:1.0
+
+</code></pre>
+<h1 id="3-容器数据卷"><a href="#3-容器数据卷" class="headerlink" title="3. 容器数据卷"></a>3. 容器数据卷</h1><h2 id="3-1-使用卷技术"><a href="#3-1-使用卷技术" class="headerlink" title="3.1 使用卷技术"></a>3.1 使用卷技术</h2><pre><code class="shell">docker run -it -v 主机目录:容器目录
+docker run -it -v /Users/yukino/Desktop/temp/test:/home centos /bin/sh
+</code></pre>
+<pre><code class="shell"># 查看挂载信息
+docker inspect 5f48c7d36c11
+        &quot;Mounts&quot;: [
+            {
+                &quot;Type&quot;: &quot;bind&quot;,
+                &quot;Source&quot;: &quot;/Users/yukino/Desktop/temp/test&quot;,
+                &quot;Destination&quot;: &quot;/home&quot;,
+                &quot;Mode&quot;: &quot;&quot;,
+                &quot;RW&quot;: true,
+                &quot;Propagation&quot;: &quot;rprivate&quot;
+            }
+        ],
+</code></pre>
+<p>两个文件夹数据共享,将容器删除掉，数据依然能够保存</p>
+<h2 id="3-2-mysql"><a href="#3-2-mysql" class="headerlink" title="3.2 mysql"></a>3.2 mysql</h2><pre><code class="shell"># 官方测试代码
+docker run --name some-mysql -v /my/own/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
+
+
+-d 后台运行
+-p 端口映射
+-v 卷挂载
+-e 环境配置
+--name 容器名
+# docker run -d -p 3310:3306 -v /Users/yukino/Desktop/temp/mysql/conf:/etc/mysql/conf.d -v /Users/yukino/Desktop/temp/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:8.0
+
+</code></pre>
+<h2 id="3-3-具名和匿名挂载"><a href="#3-3-具名和匿名挂载" class="headerlink" title="3.3 具名和匿名挂载"></a>3.3 具名和匿名挂载</h2><pre><code class="shell">docker volume
+Commands:
+  create      Create a volume
+  inspect     Display detailed information on one or more volumes
+  ls          List volumes
+  prune       Remove all unused local volumes
+  rm          Remove one or more volumes
+
+
+# 查看所有volume
+docker volume ls 
+# 匿名挂载
+yukino@Yukinos-Mac-mini  ~/Desktop/temp/mysql/data  docker run -d -P --name nginx01 -v /etc/nginx nginx
+yukino@Yukinos-Mac-mini  ~/Desktop/temp/mysql/data  docker volume ls
+DRIVER    VOLUME NAME
+local     3510004e6812e29dbbbda68b229b61e8cda715d573eef744bd470843014bea88
+local     8388160e20f4753e11b20d159c0eca0eb8f269fdbe1e37274874bf0dc85871e9
+
+# 匿名挂载挂载即 -v 只写了容器内的路径，没有写容器外的路径
+
+# 具名挂载
+-v 卷名:容器路径
+yukino@Yukinos-Mac-mini  ~/Desktop/temp/mysql/data  docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx nginx
+9656638bbc24aabdfc5961eaa7824c508b6fb7e152c78ab16b7af50dcc3f7a92
+ yukino@Yukinos-Mac-mini  ~/Desktop/temp/mysql/data  docker volume ls
+DRIVER    VOLUME NAME
+local     3510004e6812e29dbbbda68b229b61e8cda715d573eef744bd470843014bea88
+local     8388160e20f4753e11b20d159c0eca0eb8f269fdbe1e37274874bf0dc85871e9
+local     juming-nginx
+
+# 通过卷名，查看卷信息
+ yukino@Yukinos-Mac-mini  ~/Desktop/temp/mysql/data  docker volume inspect juming-nginx
+[
+    {
+        &quot;CreatedAt&quot;: &quot;2021-01-12T16:36:27Z&quot;,
+        &quot;Driver&quot;: &quot;local&quot;,
+        &quot;Labels&quot;: null,
+        &quot;Mountpoint&quot;: &quot;/var/lib/docker/volumes/juming-nginx/_data&quot;,
+        &quot;Name&quot;: &quot;juming-nginx&quot;,
+        &quot;Options&quot;: null,
+        &quot;Scope&quot;: &quot;local&quot;
+    }
+]
+</code></pre>
+<p>如何确定是具名还是匿名</p>
+<pre><code class="shell">-v 容器内路径 # 匿名
+-v 卷名:容器内路径 # 具名
+-v /宿主机路径:容器内路径 # 指定挂载路径 
+</code></pre>
+<p>拓展</p>
+<pre><code class="shell">docker run -d -P --name nginx02 -v  juming-nginx:/etc/nginx:ro nginx # ro 只读
+docker run -d -P --name nginx02 -v  juming-nginx:/etc/nginx:ro nginx # rw 可读可写
+# 一旦这个设置了容器权限，容器对我们挂载出来的内容就有限定了
+# ro 只要看到说明这个路径只能通过宿主机来操作，容器内部是无法操作的
+</code></pre>
+<h2 id="3-4-Docker-file-挂载"><a href="#3-4-Docker-file-挂载" class="headerlink" title="3.4  Docker file 挂载"></a>3.4  Docker file 挂载</h2><pre><code class="shell"># dockerfile 内容 
+# 基于centos镜像
+FROM centos
+# 挂载两个匿名卷
+VOLUME [&quot;volume01&quot;,&quot;volume02&quot;]
+# 输出echo
+CMD echo &quot;---end---&quot;
+CMD /bin/bash
+#这里的每个命令都是镜像的一层
+
+# 生成镜像
+docker build -f dockerfile1 -t yukinocentos:1.0 . 
+</code></pre>
+<pre><code class="shell">#执行镜像
+✘ yukino@Yukinos-Mac-mini  ~/Desktop/temp/dockerfile  docker run -it yukinocentos:1.0 /bin/sh
+sh-4.4# ls
+bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var  volume01    volume02 # 挂载的镜像
+
+# 退出查看原数据
+yukino@Yukinos-Mac-mini  ~/Desktop/temp/test  docker ps
+CONTAINER ID   IMAGE                 COMMAND                  CREATED         STATUS         PORTS                               NAMES
+1c6ec60a439f   yukinocentos:1.0      &quot;/bin/sh&quot;                2 minutes ago   Up 2 minutes
+#查看原数据
+docker inspect 1c6ec60a439f
+
+        &quot;Mounts&quot;: [
+            {
+                &quot;Type&quot;: &quot;volume&quot;,
+                &quot;Name&quot;: &quot;e3002d4d1b7a1ea25504a7fdbdae8d1f103924c3b87930bb004a2e6c49259a67&quot;,
+                &quot;Source&quot;: &quot;/var/lib/docker/volumes/e3002d4d1b7a1ea25504a7fdbdae8d1f103924c3b87930bb004a2e6c49259a67/_data&quot;,
+                &quot;Destination&quot;: &quot;volume01&quot;,
+                &quot;Driver&quot;: &quot;local&quot;,
+                &quot;Mode&quot;: &quot;&quot;,
+                &quot;RW&quot;: true,
+                &quot;Propagation&quot;: &quot;&quot;
+            },
+            {
+                &quot;Type&quot;: &quot;volume&quot;,
+                &quot;Name&quot;: &quot;3ecffa507747fce5d61ab4779ceb9ce1a458167829d63101ab89d332f93cd49c&quot;,
+                &quot;Source&quot;: &quot;/var/lib/docker/volumes/3ecffa507747fce5d61ab4779ceb9ce1a458167829d63101ab89d332f93cd49c/_data&quot;,
+                &quot;Destination&quot;: &quot;volume02&quot;,
+                &quot;Driver&quot;: &quot;local&quot;,
+                &quot;Mode&quot;: &quot;&quot;,
+                &quot;RW&quot;: true,
+                &quot;Propagation&quot;: &quot;&quot;
+            }
+        ],
+
+不知道为啥，source 目录在mac上打不开
+
+</code></pre>
+<h2 id="3-5-数据卷容器"><a href="#3-5-数据卷容器" class="headerlink" title="3.5 数据卷容器"></a>3.5 数据卷容器</h2><p>多个mysql容器之间数据同步</p>
+<pre><code class="shell">docker run -it --name docker01 yukinocentos:1.0
+docker run -it --name docker02 --volumes-from docker01 yukinocentos:1.0 #相当于docker02继承了docker01
+# 两个容器的数据卷volume01与volume02分别同步 
+bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var  volume01    volume02
+
+# 创建docker03
+docker run -it --name docker03 --volumes-from docker01 yukinocentos:1.0
+
+docker01 docker02 docker03 数据卷共享
+</code></pre>
+<p>当删除docker01后，docker02 docker03 数据依然存在</p>
+<h1 id="4-DockerFile"><a href="#4-DockerFile" class="headerlink" title="4. DockerFile"></a>4. DockerFile</h1><h2 id="4-1-命令"><a href="#4-1-命令" class="headerlink" title="4.1 命令"></a>4.1 命令</h2><ul>
+<li>每个指令（关键字） 都是大写字母</li>
+</ul>
+<pre><code class="shell">FROM       # 基础镜像，一切从这里开始构建 centos
+MAINTAINER # 镜像谁写的，姓名+邮箱
+RUN        # 镜像构建的时候需要运行的命令
+ADD        # 步骤：tomcat镜像，这个tomcat压缩包，添加内容
+WORKDIR    # 设置镜像的工作目录
+VOLUME     # 挂载的目录
+EXPOSE     # 指定对外的端口
+RUN        # 容器启动后要做的事
+CMD        # 指定容器启动的时候要运行的命令，只有最后一个会被生效
+ENTRYPOINT # 指定这个容器的时候要运行的命令，可以追加命令
+ONBUILD    # 当构建一个被继承 DockerFile 这个时候就会运行 ONBUILD 的指令。触发指令
+COPY       # 类似ADD，将文件拷贝到镜像中
+ENV        # 构建时设置环境变量
+</code></pre>
+<h2 id="4-2-构建自己的centos"><a href="#4-2-构建自己的centos" class="headerlink" title="4.2 构建自己的centos"></a>4.2 构建自己的centos</h2><p>Docker Hub 中大部分镜像都是从这个基础镜像过来的<code>FROM scratch</code>，然后再构建</p>
+<pre><code class="shell">FROM centos
+MAINTAINER yukino&lt;233@qq.com&gt;
+ENV MYPATH /usr/local
+WORKDIR $MYPATH
+RUN yum -y install vim
+RUN yum -y install net-tools
+EXPOSE 80
+CMD echo $MYPATH
+CMD echo &quot;---end---&quot;
+CMD /bin/bash
+</code></pre>
+<pre><code class="shell"># 构建镜像
+yukino@Yukinos-Mac-mini  ~/Desktop/temp/test  docker build -f yukinocentos -t mycentos:0.1 .
+[+] Building 168.9s (8/8) FINISHED
+ =&gt; [internal] load build definition from yukinocentos                                                            0.0s
+ =&gt; =&gt; transferring dockerfile: 241B                                                                              0.0s
+ =&gt; [internal] load .dockerignore                                                                                 0.0s
+ =&gt; =&gt; transferring context: 2B                                                                                   0.0s
+ =&gt; [internal] load metadata for docker.io/library/centos:latest                                                  0.0s
+ =&gt; CACHED [1/4] FROM docker.io/library/centos                                                                    0.0s
+ =&gt; [2/4] WORKDIR /usr/local                                                                                      0.0s
+ =&gt; [3/4] RUN yum -y install vim                                                                                163.2s
+ =&gt; [4/4] RUN yum -y install net-tools                                                                            5.1s
+ =&gt; exporting to image                                                                                            0.5s
+ =&gt; =&gt; exporting layers                                                                                           0.5s
+ =&gt; =&gt; writing image sha256:018a20376d20419103f1e2941e3d932fd376380551617692bf6bf336b5932ca4                      0.0s
+ =&gt; =&gt; naming to docker.io/library/mycentos:0.1
+</code></pre>
+<pre><code class="shell"> # 启动image
+ yukino@Yukinos-Mac-mini  ~/Desktop/temp/test  docker run -it mycentos:0.1
+[root@f2e629f64672 local]# pwd
+/usr/local
+# vim ifconfig 可以使用了
+</code></pre>
+<pre><code class="shell"># 查看构建过程
+docker history 
+
+ yukino@Yukinos-Mac-mini  ~/Desktop/temp/test  docker history mycentos:0.1
+IMAGE          CREATED         CREATED BY                                      SIZE      COMMENT
+018a20376d20   4 minutes ago   CMD [&quot;/bin/sh&quot; &quot;-c&quot; &quot;/bin/bash&quot;]                0B        buildkit.dockerfile.v0
+&lt;missing&gt;      4 minutes ago   CMD [&quot;/bin/sh&quot; &quot;-c&quot; &quot;echo \&quot;---end---\&quot;&quot;]       0B        buildkit.dockerfile.v0
+&lt;missing&gt;      4 minutes ago   CMD [&quot;/bin/sh&quot; &quot;-c&quot; &quot;echo $MYPATH&quot;]             0B        buildkit.dockerfile.v0
+&lt;missing&gt;      4 minutes ago   EXPOSE map[80/tcp:{}]                           0B        buildkit.dockerfile.v0
+&lt;missing&gt;      4 minutes ago   RUN /bin/sh -c yum -y install net-tools # bu…   14.4MB    buildkit.dockerfile.v0
+&lt;missing&gt;      4 minutes ago   RUN /bin/sh -c yum -y install vim # buildkit    58.1MB    buildkit.dockerfile.v0
+&lt;missing&gt;      7 minutes ago   WORKDIR /usr/local                              0B        buildkit.dockerfile.v0
+&lt;missing&gt;      7 minutes ago   ENV MYPATH=/usr/local                           0B        buildkit.dockerfile.v0
+&lt;missing&gt;      7 minutes ago   MAINTAINER yukino&lt;233@qq.com&gt;                   0B        buildkit.dockerfile.v0
+&lt;missing&gt;      5 weeks ago     /bin/sh -c #(nop)  CMD [&quot;/bin/bash&quot;]            0B
+&lt;missing&gt;      5 weeks ago     /bin/sh -c #(nop)  LABEL org.label-schema.sc…   0B
+&lt;missing&gt;      5 weeks ago     /bin/sh -c #(nop) ADD file:bd7a2aed6ede423b7…   209MB
+</code></pre>
+<h2 id="4-3-CMD-与-ENTRYPOINT"><a href="#4-3-CMD-与-ENTRYPOINT" class="headerlink" title="4.3 CMD 与 ENTRYPOINT"></a>4.3 CMD 与 ENTRYPOINT</h2><pre><code class="shell">ENTRYPOINT # 指定这个容器的时候要运行的命令，可以追加命令
+ONBUILD    # 当构建一个被继承 DockerFile 这个时候就会运行 ONBUILD 的指令。触发指令
+</code></pre>
+<p>测试 CMD</p>
+<pre><code class="shell"># DockerFile cmd-test
+yukino@Yukinos-Mac-mini  ~/Desktop/temp/test  cat cmd-test
+FROM centos
+CMD [&quot;ls&quot;,&quot;-a&quot;]
+# 构建镜像
+docker build -f cmd-test -t cmdtest .
+
+# 执行
+ ✘ yukino@Yukinos-Mac-mini  ~/Desktop/temp/test  docker run -it cmdtest
+.   .dockerenv    dev  home  lib64       media  opt   root  sbin    sys  usr
+..  bin        etc  lib   lost+found  mnt    proc  run   srv    tmp  var
+
+# 追加命令,报错, -l 替换了 CMD [&quot;ls&quot;,&quot;-a&quot;]， -l不是命令，所以报错
+yukino@Yukinos-Mac-mini  ~/Desktop/temp/test  docker run -it cmdtest -l
+docker: Error response from daemon: OCI runtime create failed: container_linux.go:370: starting container process caused: exec: &quot;-l&quot;: executable file not found in $PATH: unknown.
+
+# 追加命令 ls -al 可行
+ ✘ yukino@Yukinos-Mac-mini  ~/Desktop/temp/test  docker run -it cmdtest ls -al
+total 56
+drwxr-xr-x   1 root root 4096 Jan 13 15:28 .
+drwxr-xr-x   1 root root 4096 Jan 13 15:28 ..
+-rwxr-xr-x   1 root root    0 Jan 13 15:28 .dockerenv
+lrwxrwxrwx   1 root root    7 Nov  3 15:22 bin -&gt; usr/bin
+drwxr-xr-x   5 root root  360 Jan 13 15:28 dev
+drwxr-xr-x   1 root root 4096 Jan 13 15:28 etc
+drwxr-xr-x   2 root root 4096 Nov  3 15:22 home
+lrwxrwxrwx   1 root root    7 Nov  3 15:22 lib -&gt; usr/lib
+lrwxrwxrwx   1 root root    9 Nov  3 15:22 lib64 -&gt; usr/lib64
+drwx------   2 root root 4096 Dec  4 17:37 lost+found
+drwxr-xr-x   2 root root 4096 Nov  3 15:22 media
+drwxr-xr-x   2 root root 4096 Nov  3 15:22 mnt
+drwxr-xr-x   2 root root 4096 Nov  3 15:22 opt
+dr-xr-xr-x 148 root root    0 Jan 13 15:28 proc
+dr-xr-x---   2 root root 4096 Dec  4 17:37 root
+drwxr-xr-x  11 root root 4096 Dec  4 17:37 run
+lrwxrwxrwx   1 root root    8 Nov  3 15:22 sbin -&gt; usr/sbin
+drwxr-xr-x   2 root root 4096 Nov  3 15:22 srv
+dr-xr-xr-x  13 root root    0 Jan 13 15:28 sys
+drwxrwxrwt   7 root root 4096 Dec  4 17:37 tmp
+drwxr-xr-x  12 root root 4096 Dec  4 17:37 usr
+drwxr-xr-x  20 root root 4096 Dec  4 17:37 var
+</code></pre>
+<p>测试 ENTRYPOINT</p>
+<pre><code class="shell"># Docker file
+yukino@Yukinos-Mac-mini  ~/Desktop/temp/test  cat dockerfile-entrypoint
+FROM centos
+ENTRYPOINT [&quot;ls&quot;,&quot;-a&quot;]
+
+# 构建
+docker build -f dockerfile-entrypoint -t entrypointtest .
+
+# 追加命令 -l 追加到了 ENTRYPOINT [&quot;ls&quot;,&quot;-a&quot;]，不会报错
+yukino@Yukinos-Mac-mini  ~/Desktop/temp/test  docker run -it entrypointtest -l
+total 56
+drwxr-xr-x   1 root root 4096 Jan 13 15:32 .
+drwxr-xr-x   1 root root 4096 Jan 13 15:32 ..
+-rwxr-xr-x   1 root root    0 Jan 13 15:32 .dockerenv
+lrwxrwxrwx   1 root root    7 Nov  3 15:22 bin -&gt; usr/bin
+drwxr-xr-x   5 root root  360 Jan 13 15:32 dev
+drwxr-xr-x   1 root root 4096 Jan 13 15:32 etc
+drwxr-xr-x   2 root root 4096 Nov  3 15:22 home
+lrwxrwxrwx   1 root root    7 Nov  3 15:22 lib -&gt; usr/lib
+lrwxrwxrwx   1 root root    9 Nov  3 15:22 lib64 -&gt; usr/lib64
+drwx------   2 root root 4096 Dec  4 17:37 lost+found
+drwxr-xr-x   2 root root 4096 Nov  3 15:22 media
+drwxr-xr-x   2 root root 4096 Nov  3 15:22 mnt
+drwxr-xr-x   2 root root 4096 Nov  3 15:22 opt
+dr-xr-xr-x 150 root root    0 Jan 13 15:32 proc
+dr-xr-x---   2 root root 4096 Dec  4 17:37 root
+drwxr-xr-x  11 root root 4096 Dec  4 17:37 run
+lrwxrwxrwx   1 root root    8 Nov  3 15:22 sbin -&gt; usr/sbin
+drwxr-xr-x   2 root root 4096 Nov  3 15:22 srv
+dr-xr-xr-x  13 root root    0 Jan 13 15:28 sys
+drwxrwxrwt   7 root root 4096 Dec  4 17:37 tmp
+drwxr-xr-x  12 root root 4096 Dec  4 17:37 usr
+drwxr-xr-x  20 root root 4096 Dec  4 17:37 var
+</code></pre>
+<h2 id="4-4-构建tomcat"><a href="#4-4-构建tomcat" class="headerlink" title="4.4 构建tomcat"></a>4.4 构建tomcat</h2><p><img src="/Users/yukino/Library/Application Support/typora-user-images/image-20210113235207052.png" alt="image-20210113235207052"></p>
+<h1 id="5-发布镜像"><a href="#5-发布镜像" class="headerlink" title="5.发布镜像"></a>5.发布镜像</h1><h2 id="5-1-阿里云"><a href="#5-1-阿里云" class="headerlink" title="5.1 阿里云"></a>5.1 阿里云</h2><ul>
+<li>进入阿里云容器镜像服务，创建镜像仓库</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/image-20210114225137608.png" alt="image-20210114225137608"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/image-20210114225202674.png" alt="image-20210114225202674"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/image-20210114225233923.png" alt="image-20210114225233923"></p>
+<ul>
+<li>push 到 阿里云的步骤参考 阿里云里面的操作步骤即可</li>
+</ul>
+<h1 id="6-docker-网络"><a href="#6-docker-网络" class="headerlink" title="6.docker 网络"></a>6.docker 网络</h1><pre><code class="shell"># 运行容器
+docker run -d -P --name tomcat01 tomcat
+# 执行 ip addr
+docker exec -it c864d7b91d46 ip addr
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: tunl0@NONE: &lt;NOARP&gt; mtu 1480 qdisc noop state DOWN group default qlen 1000
+    link/ipip 0.0.0.0 brd 0.0.0.0
+3: ip6tnl0@NONE: &lt;NOARP&gt; mtu 1452 qdisc noop state DOWN group default qlen 1000
+    link/tunnel6 :: brd ::
+50: eth0@if51: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default
+    link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+</code></pre>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/appreciation/aplipay.png"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/appreciation/aplipay.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2021/01/17/技术/Java 语法/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                Java语法</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2020/12/31/生活/Daily Review - 202012/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                Daily Review 2020-12</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "4asHXF3SLvCKEfXTHBmYKjpi-MdYXbMMI",
+        appKey: "xXS4NNFP7X7Su7AIwt86pHXj",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="/#" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico" itemprop="image" alt="Yukino" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="/#" itemprop="url" rel="author">Yukino</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div> 
+    <!--站内搜索模块-->   
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input
+        type="text"
+        class="ins-search-input"
+        placeholder="请输入关键词..."
+      />
+      <span class="ins-close ins-selectable"
+        ><i class="fa fa-times-circle"></i
+      ></span>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<!--yukino:script中的变量是用于站内搜索-->
+<script>
+  //function后面的变量window是形参，最后window是传入的实际参数。
+  (function (window) {
+    var INSIGHT_CONFIG = {
+      TRANSLATION: {
+        //yukino:insight变量是来自zh-cn.yml,但是怎么获取的不清楚，为何是zh-cn.yml而非en.yml也不清楚
+        POSTS: '文章',
+        // PAGES: '页面',
+        CATEGORIES: '分类',
+        TAGS: '标签',
+      },
+      ROOT_URL: "/",
+      CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 yukino<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2020</p>
+    </div>
+    <div class="footer-device">
+      <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank"
+            style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i
+            class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a
+            href="https://2heng.xin/" target="_blank"
+            style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a
+            href="https://www.hojun.cn/" target="_blank"
+            style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo,
+          Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+  /* <![CDATA[ */
+  if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    var Poi = { "pjax": "1", "movies": { "url": "https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/video", "name": "yukino_360p.mp4", "live": "close" }, "windowheight": "fixed", "codelamp": "close", "ajaxurl": "", "order": "asc", "formpostion": "bottom" };
+  } else {
+    var Poi = { "pjax": "1", "movies": { "url": "https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/video", "name": "yukino_360p.mp4", "live": "open" }, "windowheight": "auto", "codelamp": "close", "ajaxurl": "", "order": "asc", "formpostion": "bottom" };
+  }
+/* ]]> */
+
+</script>
+<script>
+  $(document).ready(function () {
+    if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+      if ($(".pattern-center").length > 0) { //有图的情况
+        tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+        });
+      } else {
+        tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+        });
+      }
+      var offsetTop = $('.toc').offset().top - 95;
+      window.onscroll = function () {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop >= offsetTop) {
+          $('.toc').addClass('toc-fixed');
+        } else {
+          $('.toc').removeClass('toc-fixed');
+        }
+      }
+    }
+  });
+</script>
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">Yukino</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/Yukino831143" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="http://weibo.com/mashirozx?is_all=1" class="fa fa-weibo" target="_blank" style="color: #dd4b39; margin-left:20px"></a>
+      
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=954655431&site=qq&menu=yes" class="fa fa-qq" target="_blank" style="color: #25c6fe; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/随想/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/番剧/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番剧
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/读书/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  读书
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="363423188"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>

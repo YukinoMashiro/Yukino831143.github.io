@@ -1,0 +1,1803 @@
+<!-- yukino:_partial/head.ejs主要完成一些页面初始化工作，但是在页面上基本表现不出来 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    
+    <title itemprop="name">
+      码问社区知识点拆解(2) | yukino
+    </title>
+    <!-- yukino:这里是网页标签的小图标 -->
+    
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/css/lib.min.css" media="all">
+    <link rel="stylesheet" href="/css/font.css" media="all">
+    <link rel="stylesheet" href="/css/insight.css" media="all">
+    <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+    <link rel="stylesheet" href="/css/zoom.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+    <!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+    <script>
+      /*Initial Variables*/
+      var mashiro_option = new Object();
+      var mashiro_global = new Object();
+      mashiro_option.NProgressON = true;
+      /*
+       * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+       * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+       */
+      mashiro_option.email_domain = "";
+      mashiro_option.email_name = "";
+      mashiro_option.cookie_version_control = "";
+      mashiro_option.qzone_autocomplete = false;
+      mashiro_option.site_name = "Yukino";
+      mashiro_option.author_name = "";
+      mashiro_option.site_url = "/";
+      mashiro_option.v_appId = "4asHXF3SLvCKEfXTHBmYKjpi-MdYXbMMI";
+      mashiro_option.v_appKey = "xXS4NNFP7X7Su7AIwt86pHXj";
+      mashiro_option.mathjax = "0";
+      mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/";
+      mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+      // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+      // mashiro_option.float_player_on = true;
+
+      /*End of Initial Variables*/
+    </script>
+    <script type="text/javascript">
+      var bg = "https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/1.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/2.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/3.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/4.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/5.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/6.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/7.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/8.webp".split(",");
+      var bgindex = Math.floor(Math.random() * bg.length);
+      if (!!window.ActiveXObject || "ActiveXObject" in window) {
+        //is IE?
+        alert("朋友，IE浏览器未适配哦~");
+      }
+    </script>
+    <style type="text/css">
+      .hljs-ln {
+        border-collapse: collapse;
+      }
+      .hljs-ln td {
+        padding: 0;
+      }
+      .hljs-ln-n:before {
+        content: attr(data-line-number);
+      }
+    </style>
+    <style type="text/css">
+      .site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+    </style>
+  </head>
+</html>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <!--yukino:显示多种社交联系方式,视频播放器,首页下滑箭头-->
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="/">
+          <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico" />
+        </a>
+      </div>
+      <div class="header-info">
+        <p>やはり俺の青春ラブコメはまちがっている</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img
+              class="flipx"
+              src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/next-b.svg"
+            />
+          </li>
+          <!--yukino:显示多种社交联系方式-->
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="github"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/github.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="jianshu"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/jianshu.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="sina"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/sina.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="wangyiyun"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/wangyiyun.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="zhihu"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/zhihu.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="email"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/email.svg" />
+            </a>
+          </li>
+            
+          <li class="wechat">
+            <a href="/#">
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/wechat.png" />
+            </a>
+            <div class="wechatInner">
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/social/wechat.png" />
+            </div>
+          </li>
+            
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/next-b.svg" />
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <!--yukino:播放器-->
+  <div id="video-container" style="">
+    <video
+      style="object-fit: fill;"
+      id="bgvideo"
+      class="video"
+      video-name=""
+      src=""
+      width="auto"
+      preload="auto"
+    ></video>
+    <div id="video-btn" class="loadvideo videolive"></div>
+    <div id="video-add"></div>
+    <div class="video-stu"></div>
+  </div>
+  <!--下滑箭头，点击箭头，页面从主页壁纸滑向博客页面-->
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true"> </i>
+    </span>
+  </div>
+</div>
+
+    <div id="page" class="site wrapper">
+      <!--yukino:头部的menu部分，首页，归档，清单，友人帐...-->
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">Yukino</span>
+            <span class="shironeko"></span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search"> </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1"></div>
+      <div class="line line2"></div>
+      <div class="line line3"></div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <!--yukino:头部的menu部分，首页，归档，清单，友人帐...-->
+          <ul id="menu-new" class="menu">
+            
+            <li>
+              <a href="/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-fort-awesome faa-shake"
+                    aria-hidden="true"
+                  ></i>
+                  首页
+                </span>
+              </a>
+              
+            </li>
+            
+            <li>
+              <a href="/archives">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-archive faa-shake"
+                    aria-hidden="true"
+                  ></i>
+                  归档
+                </span>
+              </a>
+              
+              <ul class="sub-menu">
+                
+                <li>
+                  <a
+                    href="/categories/技术/"
+                  >
+                    <i
+                      class="fa fa-code"
+                      aria-hidden="true"
+                    ></i>
+                    技术
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/生活/"
+                  >
+                    <i
+                      class="fa fa-file-text-o"
+                      aria-hidden="true"
+                    ></i>
+                    生活
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/随想/"
+                  >
+                    <i
+                      class="fa fa-commenting-o"
+                      aria-hidden="true"
+                    ></i>
+                    随想
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/番剧/"
+                  >
+                    <i
+                      class="fa fa-film faa-vertical"
+                      aria-hidden="true"
+                    ></i>
+                    番剧
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/读书/"
+                  >
+                    <i
+                      class="fa fa-th-list faa-bounce"
+                      aria-hidden="true"
+                    ></i>
+                    读书
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/music/"
+                  >
+                    <i
+                      class="fa fa-headphones"
+                      aria-hidden="true"
+                    ></i>
+                    歌单
+                  </a>
+                </li>
+                
+              </ul>
+              
+            </li>
+            
+            <li>
+              <a href="/comment/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-pencil-square-o faa-tada"
+                    aria-hidden="true"
+                  ></i>
+                  留言板
+                </span>
+              </a>
+              
+            </li>
+            
+            <li>
+              <a href="/donate/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-heart faa-pulse"
+                    aria-hidden="true"
+                  ></i>
+                  赞赏
+                </span>
+              </a>
+              
+            </li>
+            
+            <li>
+              <a href="/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-leaf faa-wrench"
+                    aria-hidden="true"
+                  ></i>
+                  关于
+                </span>
+              </a>
+              
+              <ul class="sub-menu">
+                
+                <li>
+                  <a
+                    href="/about/"
+                  >
+                    <i
+                      class="fa fa-meetup"
+                      aria-hidden="true"
+                    ></i>
+                    我？
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/theme-sakura/"
+                  >
+                    <i
+                      class="fa iconfont icon-sakura"
+                      aria-hidden="true"
+                    ></i>
+                    主题
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/lab/"
+                  >
+                    <i
+                      class="fa fa-cogs"
+                      aria-hidden="true"
+                    ></i>
+                    Lab
+                  </a>
+                </li>
+                
+              </ul>
+              
+            </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <!--文章详情页的banner从使用封面图片，修改为自定义，使用md文章中的属性 banner 20200712-->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/banner/1.jpg);" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/banner/1.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      码问社区知识点拆解(2)</h1>
+      <p class="entry-census">
+        <span>
+          <a href="/#">
+            <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico">
+          </a>
+        </span>
+        <span>
+          <a href="/#">Yukino</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-1-18<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="1-Bootstrap"><a href="#1-Bootstrap" class="headerlink" title="1.Bootstrap"></a>1.Bootstrap</h1><ol>
+<li>起步 </li>
+</ol>
+<ul>
+<li><p>Site: <code>https://v3.bootcss.com/getting-started/</code></p>
+</li>
+<li><p>下载静态资源文件</p>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/1.jpg" alt="1"></p>
+<ul>
+<li>导入到idea项目</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/2.png" alt="image-20201227171202243"></p>
+<ul>
+<li>html导入静态资源</li>
+</ul>
+<pre><code class="html">&lt;!DOCTYPE HTML&gt;
+&lt;html xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;码匠社区&lt;/title&gt;
+
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/bootstrap.min.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/bootstrap-theme.min.css&quot;&gt;
+    &lt;script src=&quot;js/bootstrap.min.js&quot; type=&quot;application/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+</code></pre>
+<ul>
+<li>引入导航栏代码</li>
+</ul>
+<p><code>https://v3.bootcss.com/components/#navbar-default</code></p>
+<pre><code class="html">&lt;body&gt;
+&lt;nav class=&quot;navbar navbar-default&quot;&gt;
+    &lt;div class=&quot;container-fluid&quot;&gt;
+        &lt;!-- Brand and toggle get grouped for better mobile display --&gt;
+        &lt;div class=&quot;navbar-header&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;navbar-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#bs-example-navbar-collapse-1&quot; aria-expanded=&quot;false&quot;&gt;
+                &lt;span class=&quot;sr-only&quot;&gt;码匠社区&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;码匠社区&lt;/a&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Collect the nav links, forms, and other content for toggling --&gt;
+        &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;bs-example-navbar-collapse-1&quot;&gt;
+            &lt;form class=&quot;navbar-form navbar-left&quot;&gt;
+                &lt;div class=&quot;form-group&quot;&gt;
+                    &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;搜索问题&quot;&gt;
+                &lt;/div&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Submit&lt;/button&gt;
+            &lt;/form&gt;
+            &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
+                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;登录&lt;/a&gt;&lt;/li&gt;
+                &lt;li class=&quot;dropdown&quot;&gt;
+                    &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; role=&quot;button&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot;&gt;我 &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+                    &lt;ul class=&quot;dropdown-menu&quot;&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;消息中心&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;个人资料&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;退出登登录&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;&lt;!-- /.navbar-collapse --&gt;
+    &lt;/div&gt;&lt;!-- /.container-fluid --&gt;
+&lt;/nav&gt;
+&lt;/body&gt;
+</code></pre>
+<h1 id="2-GitHub-三方登录"><a href="#2-GitHub-三方登录" class="headerlink" title="2. GitHub 三方登录"></a>2. GitHub 三方登录</h1><h2 id="2-0-原理"><a href="#2-0-原理" class="headerlink" title="2.0 原理"></a>2.0 原理</h2><p><img src="/Users/yukino/Desktop/study/SpringBoot/myself/markdown/博客/码问/pic/11.png" alt="image-20201227233551665"></p>
+<h2 id="2-1-进入Github开发者"><a href="#2-1-进入Github开发者" class="headerlink" title="2.1 进入Github开发者"></a>2.1 进入Github开发者</h2><ul>
+<li>github首页</li>
+<li>头像</li>
+<li>Setting</li>
+<li>Developer settings</li>
+<li>OAnth Apps</li>
+<li>New OAuth App</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/4.png" alt="image-20201227230127882"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/5.png" alt="image-20201227230226194"></p>
+<p><code>Authorization callback URL</code> 栏是最重要的，这是github之后，通过此地址接收github返回的信息</p>
+<ul>
+<li>创建完成</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/6.png" alt="image-20201227230453151"></p>
+<p>在<code>OAuth App</code>创建完成后，需要记住<code>Client ID</code>和<code>Client secrets</code>, 这是与github 交互的依据</p>
+<h2 id="2-2-根据github-api-接口获取数据"><a href="#2-2-根据github-api-接口获取数据" class="headerlink" title="2.2 根据github api 接口获取数据"></a>2.2 根据github api 接口获取数据</h2><p><a href="https://docs.github.com/en/free-pro-team@latest/developers/apps/creating-an-oauth-app" target="_blank" rel="noopener">Github OAuth Document</a></p>
+<h3 id="2-2-1-Users-are-redirected-to-request-their-GitHub-identity"><a href="#2-2-1-Users-are-redirected-to-request-their-GitHub-identity" class="headerlink" title="2.2.1  Users are redirected to request their GitHub identity"></a>2.2.1  Users are redirected to request their GitHub identity</h3><h4 id><a href="#" class="headerlink" title></a><img src="/Users/yukino/Desktop/study/SpringBoot/myself/markdown/博客/码问/pic/7.png" alt="image-20201227231318915"></h4><pre><code class="html">&lt;a href=&quot;https://github.com/login/oauth/authorize?client_id=bffae17dcea7490afcb6&amp;redirect_uri=http://localhost:8887/callback&amp;scope=user&amp;state=1&quot;&gt;登录&lt;/a&gt;
+</code></pre>
+<h3 id="2-2-2-Users-are-redirected-back-to-your-site-by-GitHub"><a href="#2-2-2-Users-are-redirected-back-to-your-site-by-GitHub" class="headerlink" title="2.2.2 Users are redirected back to your site by GitHub"></a>2.2.2 Users are redirected back to your site by GitHub</h3><p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/8.png" alt="image-20201227232118784"></p>
+<p><strong>通过OkHttp发送POST GET请求</strong></p>
+<p><a href="https://square.github.io/okhttp/" target="_blank" rel="noopener">okHttp</a></p>
+<pre><code class="xml">        &lt;!--okhttp--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.squareup.okhttp3&lt;/groupId&gt;
+            &lt;artifactId&gt;okhttp&lt;/artifactId&gt;
+            &lt;version&gt;4.5.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!--fastjson--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+            &lt;artifactId&gt;fastjson&lt;/artifactId&gt;
+            &lt;version&gt;1.2.75&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<p><strong>例子</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/9.png" alt="image-20201227232522676"></p>
+<p><strong>发送POST请求到github api</strong></p>
+<pre><code class="Java">    public String getAccessToken(AccessTokenDTO accessTokenDTO) {
+        MediaType mediaType = MediaType.get(&quot;application/json; charset=utf-8&quot;);
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody body = RequestBody.create(JSON.toJSONString(accessTokenDTO), mediaType);
+        Request request = new Request.Builder()
+                .url(&quot;https://github.com/login/oauth/access_token&quot;)
+                .post(body)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            String string = response.body().string();
+            String token = string.split(&quot;&amp;&quot;)[0].split(&quot;=&quot;)[1];
+            return token;
+        } catch (Exception e) {
+            log.error(&quot;getAccessToken error,{}&quot;, accessTokenDTO, e);
+        }
+        return null;
+    }
+</code></pre>
+<h3 id="2-2-3-Use-the-access-token-to-access-the-API"><a href="#2-2-3-Use-the-access-token-to-access-the-API" class="headerlink" title="2.2.3 Use the access token to access the API"></a>2.2.3 Use the access token to access the API</h3><p><img src="/Users/yukino/Desktop/study/SpringBoot/myself/markdown/博客/码问/pic/10.png" alt="image-20201227232942075"></p>
+<pre><code class="Java">    public GithubUser getUser(String accessToken) {
+        OkHttpClient client = new OkHttpClient();
+//        Request request = new Request.Builder()
+//                .url(&quot;https://api.github.com/user?access_token=&quot; + accessToken)
+//                .build();
+        Request request = new Request.Builder()
+                .url(&quot;https://api.github.com/user&quot;)
+                .header(&quot;Authorization&quot;,&quot;token &quot;+accessToken)
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            String string = response.body().string();
+            System.out.println(string);
+            GithubUser githubUser = JSON.parseObject(string, GithubUser.class);
+            return githubUser;
+        } catch (Exception e) {
+            log.error(&quot;getUser error,{}&quot;, accessToken, e);
+        }
+        return null;
+    }
+</code></pre>
+<p><strong>注意!!!!</strong></p>
+<p>代码中注释掉的三行，是以前(2019年上)将Token作为地址参数带入的。现在已经不采用，而是将参数作为请求头参数带入。<strong>我折腾了很久才发现</strong></p>
+<h3 id="2-2-4-完成获取user信息"><a href="#2-2-4-完成获取user信息" class="headerlink" title="2.2.4 完成获取user信息"></a>2.2.4 完成获取user信息</h3><pre><code class="java">@Controller
+public class AuthorizeController {
+
+    @Resource
+    private GithubProvider githubProvider;
+
+    @Value(&quot;${github.client.id}&quot;)
+    private String clientId;
+
+    @Value(&quot;${github.client.secret}&quot;)
+    private String clientSecret;
+
+    @Value(&quot;${github.redirect.uri}&quot;)
+    private String redirectUri;
+
+
+    @GetMapping(&quot;/callback&quot;)
+    public String callback(@RequestParam(name = &quot;code&quot;) String code,
+                           @RequestParam(name = &quot;state&quot;) String state,
+                           HttpServletResponse response) {
+        AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
+        accessTokenDTO.setClient_id(clientId);
+        accessTokenDTO.setClient_secret(clientSecret);
+        accessTokenDTO.setCode(code);
+        accessTokenDTO.setRedirect_uri(redirectUri);
+        accessTokenDTO.setState(state);
+        String accessToken = githubProvider.getAccessToken(accessTokenDTO);
+        GithubUser githubUser = githubProvider.getUser(accessToken);
+        System.out.println(&quot;yukino===&quot; + githubUser);
+
+        return &quot;index&quot;;
+    }
+}
+</code></pre>
+<h1 id="3-整合mybatis"><a href="#3-整合mybatis" class="headerlink" title="3. 整合mybatis"></a>3. 整合mybatis</h1><h2 id="3-1-依赖"><a href="#3-1-依赖" class="headerlink" title="3.1 依赖"></a>3.1 依赖</h2><pre><code class="xml">        &lt;!-- mybatis --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;2.1.4&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!--jdbc--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;!--mysql--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;scope&gt;runtime&lt;/scope&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<h2 id="3-2-model-entity"><a href="#3-2-model-entity" class="headerlink" title="3.2 model(entity)"></a>3.2 model(entity)</h2><pre><code class="java">@Data
+public class User {
+    private Integer id;
+    private String name;
+    private String accountId;
+    private String token;
+    private Long gmtCreate;
+    private Long gmtModified;
+}
+</code></pre>
+<h2 id="3-3-mapper"><a href="#3-3-mapper" class="headerlink" title="3.3 mapper"></a>3.3 mapper</h2><pre><code class="java">@Mapper
+public interface UserMapper {
+    @Insert(&quot;insert into user(name, account_id, token, gmt_create, gmt_modified) values(#{name}, #{accountId}, #{token}, #{gmtCreate}, #{gmtModified}) &quot;)
+    public void insert(User user);
+
+    @Select(&quot;select * from user where token=#{token}&quot;)
+    User findByToken(@Param(&quot;token&quot;) String token);
+}
+</code></pre>
+<h2 id="3-4-controller"><a href="#3-4-controller" class="headerlink" title="3.4 controller"></a>3.4 controller</h2><pre><code class="java">@Controller
+public class IndexController {
+
+    @Resource
+    private UserMapper userMapper;
+
+    @GetMapping(&quot;/&quot;)
+    public String index(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null ) {
+            return &quot;index&quot;;
+        }
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals(&quot;token&quot;)) {
+                String token = cookie.getValue();
+                User user = userMapper.findByToken(token);
+                if (user != null) {
+                    request.getSession().setAttribute(&quot;user&quot;, user);
+                }
+                break;
+            }
+        }
+        return &quot;index&quot;;
+    }
+}
+</code></pre>
+<pre><code class="java">@Controller
+public class AuthorizeController {
+
+    @Resource
+    private GithubProvider githubProvider;
+
+    @Value(&quot;${github.client.id}&quot;)
+    private String clientId;
+
+    @Value(&quot;${github.client.secret}&quot;)
+    private String clientSecret;
+
+    @Value(&quot;${github.redirect.uri}&quot;)
+    private String redirectUri;
+
+    @Resource
+    UserMapper userMapper;
+
+    @GetMapping(&quot;/callback&quot;)
+    public String callback(@RequestParam(name = &quot;code&quot;) String code,
+                           @RequestParam(name = &quot;state&quot;) String state,
+                           HttpServletRequest request, HttpServletResponse response) {
+        AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
+        accessTokenDTO.setClient_id(clientId);
+        accessTokenDTO.setClient_secret(clientSecret);
+        accessTokenDTO.setCode(code);
+        accessTokenDTO.setRedirect_uri(redirectUri);
+        accessTokenDTO.setState(state);
+        String accessToken = githubProvider.getAccessToken(accessTokenDTO);
+        GithubUser githubUser = githubProvider.getUser(accessToken);
+        if (githubUser != null) {
+            User user = new User();
+            String token = UUID.randomUUID().toString();
+            user.setToken(token);
+            user.setName(githubUser.getName());
+            user.setAccountId(String.valueOf(githubUser.getId()));
+            user.setGmtCreate(System.currentTimeMillis());
+            user.setGmtModified(user.getGmtCreate());
+            userMapper.insert(user);
+            response.addCookie(new Cookie(&quot;token&quot;, token));
+
+            request.getSession().setAttribute(&quot;user&quot;, githubUser);
+
+            return &quot;redirect:/&quot;;
+        } else {
+            return &quot;redirect:/&quot;;
+        }
+    }
+}
+</code></pre>
+<h1 id="4-利用BootStrap-搭建前端界面"><a href="#4-利用BootStrap-搭建前端界面" class="headerlink" title="4. 利用BootStrap 搭建前端界面"></a>4. 利用BootStrap 搭建前端界面</h1><h2 id="4-1-栅格系统"><a href="#4-1-栅格系统" class="headerlink" title="4.1 栅格系统"></a>4.1 栅格系统</h2><p><a href="https://v3.bootcss.com/css/#grid" target="_blank" rel="noopener">栅格系统</a></p>
+<p>Bootstrap 提供了一套响应式、移动设备优先的流式栅格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为最多12列。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">超小屏幕 手机 (&lt;768px)</th>
+<th style="text-align:left">小屏幕 平板 (≥768px)</th>
+<th style="text-align:left">中等屏幕 桌面显示器 (≥992px)</th>
+<th style="text-align:left">大屏幕 大桌面显示器 (≥1200px)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">栅格系统行为</td>
+<td style="text-align:left">总是水平排列</td>
+<td style="text-align:left">开始是堆叠在一起的，当大于这些阈值时将变为水平排列C</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.container</code> 最大宽度</td>
+<td style="text-align:left">None （自动）</td>
+<td style="text-align:left">750px</td>
+<td style="text-align:left">970px</td>
+<td style="text-align:left">1170px</td>
+</tr>
+<tr>
+<td style="text-align:left">类前缀</td>
+<td style="text-align:left"><code>.col-xs-</code></td>
+<td style="text-align:left"><code>.col-sm-</code></td>
+<td style="text-align:left"><code>.col-md-</code></td>
+<td style="text-align:left"><code>.col-lg-</code></td>
+</tr>
+<tr>
+<td style="text-align:left">列（column）数</td>
+<td style="text-align:left">12</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">最大列（column）宽</td>
+<td style="text-align:left">自动</td>
+<td style="text-align:left">~62px</td>
+<td style="text-align:left">~81px</td>
+<td style="text-align:left">~97px</td>
+</tr>
+<tr>
+<td style="text-align:left">槽（gutter）宽</td>
+<td style="text-align:left">30px （每列左右均有 15px）</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">可嵌套</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">偏移（Offsets）</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">列排序</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="html">&lt;div class=&quot;col-lg-9 col-md-12 col-sm-12 col-xs-12&quot;&gt;
+
+&lt;/div&gt;
+</code></pre>
+<ul>
+<li>大屏幕 大桌面显示器 (≥1200px)  :  col-lg-9 占用窗口9格</li>
+<li>中等屏幕 桌面显示器 (≥992px)   :  col-md-12 占用窗口12格 (即全部)</li>
+<li>小屏幕 平板 (≥768px) :  col-md-12 占用窗口12格 (即全部)</li>
+<li>超小屏幕 手机 (&lt;768px) : col-md-12 占用窗口12格 (即全部)</li>
+</ul>
+<h2 id="4-2-组件"><a href="#4-2-组件" class="headerlink" title="4.2 组件"></a>4.2 组件</h2><p><a href="https://v3.bootcss.com/components/" target="_blank" rel="noopener">组件</a></p>
+<h2 id="4-3-全局样式"><a href="#4-3-全局样式" class="headerlink" title="4.3 全局样式"></a>4.3 全局样式</h2><p><a href="https://v3.bootcss.com/css/" target="_blank" rel="noopener">全局样式</a></p>
+<h2 id="4-4-举例"><a href="#4-4-举例" class="headerlink" title="4.4 举例"></a>4.4 举例</h2><pre><code class="html">&lt;!DOCTYPE HTML&gt;
+&lt;html xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;码匠社区&lt;/title&gt;
+
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/bootstrap.min.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/bootstrap-theme.min.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/community.css&quot;&gt;
+    &lt;script src=&quot;js/bootstrap.min.js&quot; type=&quot;application/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;nav class=&quot;navbar navbar-default&quot;&gt;
+    &lt;div class=&quot;container-fluid&quot;&gt;
+        &lt;!-- Brand and toggle get grouped for better mobile display --&gt;
+        &lt;div class=&quot;navbar-header&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;navbar-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#bs-example-navbar-collapse-1&quot; aria-expanded=&quot;false&quot;&gt;
+                &lt;span class=&quot;sr-only&quot;&gt;码匠社区&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;码匠社区&lt;/a&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Collect the nav links, forms, and other content for toggling --&gt;
+        &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;bs-example-navbar-collapse-1&quot;&gt;
+            &lt;form class=&quot;navbar-form navbar-left&quot;&gt;
+                &lt;div class=&quot;form-group&quot;&gt;
+                    &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;搜索问题&quot;&gt;
+                &lt;/div&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Submit&lt;/button&gt;
+            &lt;/form&gt;
+            &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
+                &lt;li th:if=&quot;${session.user == null}&quot;&gt;
+                    &lt;a href=&quot;https://github.com/login/oauth/authorize?client_id=bffae17dcea7490afcb6&amp;redirect_uri=http://localhost:8887/callback&amp;scope=user&amp;state=1&quot;&gt;登录&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;dropdown&quot; th:if=&quot;${session.user != null}&quot;&gt;
+                    &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; role=&quot;button&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot;&gt;
+                        &lt;span th:text=&quot;${session.user.getName()}&quot;&gt;&lt;/span&gt;
+                        &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;
+                    &lt;/a&gt;
+                    &lt;ul class=&quot;dropdown-menu&quot;&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;消息中心&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;个人资料&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;退出登登录&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;&lt;!-- /.navbar-collapse --&gt;
+    &lt;/div&gt;&lt;!-- /.container-fluid --&gt;
+&lt;/nav&gt;
+
+&lt;div class=&quot;container-fluid main&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-lg-9 col-md-12 col-sm-12 col-xs-12&quot;&gt;
+            &lt;h2&gt;&lt;span class=&quot;glyphicon glyphicon-align-left&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;发起&lt;/h2&gt;
+            &lt;hr&gt;
+
+        &lt;form action=&quot;&quot;&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;title&quot;&gt;问题标题(简明扼要)：&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;title&quot; name=&quot;title&quot; placeholder=&quot;问题标题.....&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;description&quot;&gt;问题补充 (必填，请参照右侧提示):&lt;/label&gt;
+                &lt;textarea name=&quot;description&quot; id=&quot;description&quot; class=&quot;form-control&quot; cols=&quot;30&quot; rows=&quot;10&quot;&gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;title&quot;&gt;添加标签：&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;tag&quot; name=&quot;tag&quot; placeholder=&quot;输入标签，以，号隔开&quot;&gt;
+            &lt;/div&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-success btn-publish&quot;&gt;发布&lt;/button&gt;
+        &lt;/form&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-lg-3 col-md-12 col-sm-12 col-xs-12&quot;&gt;
+            &lt;h3&gt;问题发起指南&lt;/h3&gt;
+            • 问题标题: 请用精简的语言描述您发布的问题，不超过25字 &lt;br&gt;
+            • 问题补充: 详细补充您的问题内容，并确保问题描述清晰直观, 并提供一些相关的资料&lt;br&gt;
+            • 选择标签: 选择一个或者多个合适的标签，用逗号隔开，每个标签不超过10个字&lt;br&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/12.png" alt="image-20201229014813247"></p>
+<h1 id="5-分页"><a href="#5-分页" class="headerlink" title="5. 分页"></a>5. 分页</h1><h2 id="5-1-直接实现分页"><a href="#5-1-直接实现分页" class="headerlink" title="5.1 直接实现分页"></a>5.1 直接实现分页</h2><h3 id="5-1-1-实体类"><a href="#5-1-1-实体类" class="headerlink" title="5.1.1  实体类"></a>5.1.1  实体类</h3><pre><code class="java">@Data
+public class PaginationDTO {
+    private List&lt;QuestionDTO&gt; questions;//文章
+    private boolean showPrevious;//上一页
+    private boolean showFirstPage;//首页
+    private boolean showNext;//下一页
+    private boolean showEndPage;//尾页
+    private Integer page;//当前页
+    private List&lt;Integer&gt; pages = new ArrayList&lt;&gt;();//当前分页栏显示的页码集合
+    private Integer totalPage;//
+
+    /**
+     *
+     * @param totalCount 问题总数
+     * @param page 地址栏的当前页数
+     * @param size 每一页的问题数量
+     */
+    public void setPagination(Integer totalCount, Integer page, Integer size) {
+
+            totalPage = (totalCount % size == 0) ? (totalCount / size) : (totalCount / size + 1);
+
+            if (page &lt; 1) {
+                page = 1;
+            }
+            if (page &gt; totalPage) {
+                page = totalPage;
+            }
+            this.page = page;
+
+            //计算当前页的分页栏显示的页码集合
+            pages.add(page);
+            for (int i = 1;i &lt;= 3; i++) {
+                if (page - i &gt; 0) {
+                    pages.add(0, page - i);
+                }
+                if (page + i &lt;= totalPage) {
+                    pages.add(page + i);
+                }
+            }
+            //是否展示上一页标签
+            if (page == 1) {
+                showFirstPage = false;
+            } else {
+                showFirstPage = true;
+            }
+            //是否展示下一页标签
+            if (page == totalPage) {
+                showEndPage = false;
+            } else {
+                showEndPage = true;
+            }
+
+            //是否展示首页箭头，只要没包含第一页，就显示首页标签
+            if (pages.contains(1)) {
+                showFirstPage = false;
+            } else {
+                showFirstPage = true;
+            }
+            //是否展示尾页箭头
+            if (pages.contains(totalPage)) {
+                showEndPage = false;
+            } else {
+                showEndPage = true;
+            }
+
+    }
+}
+
+</code></pre>
+<h3 id="5-1-2-mapper类"><a href="#5-1-2-mapper类" class="headerlink" title="5.1.2 mapper类"></a>5.1.2 mapper类</h3><pre><code class="java">@Mapper
+public interface QuestionMapper {
+    @Insert(&quot;insert into question(title, description, gmt_create, gmt_modified, creator, tag) values (#{title}, #{description},#{gmtCreate}, #{gmtModified}, #{creator}, #{tag})&quot;)
+    public void create(Question question);
+
+    //分页查询
+    @Select(&quot;select * from question limit #{offset}, #{size}&quot;)
+    List&lt;Question&gt; list(@Param(&quot;offset&quot;) Integer offset, @Param(&quot;size&quot;) Integer size);
+
+    //question查询
+    @Select(&quot;select count(1) from question&quot;)
+    Integer count();
+}
+</code></pre>
+<h3 id="5-1-3-Service类"><a href="#5-1-3-Service类" class="headerlink" title="5.1.3 Service类"></a>5.1.3 Service类</h3><pre><code class="java">@Service
+public class QuestionService {
+    @Resource
+    QuestionMapper questionMapper;
+    @Resource
+    UserMapper userMapper;
+    public PaginationDTO list(Integer page, Integer size) {
+
+        PaginationDTO paginationDTO = new PaginationDTO();
+        Integer totalCount = questionMapper.count();//问题总数
+        paginationDTO.setPagination(totalCount, page, size);
+        if (page &lt; 1) {
+            page = 1;
+        }
+        if (page &gt; paginationDTO.getTotalPage()) {
+            page = paginationDTO.getTotalPage();
+        }
+
+        //offset = size * (page - 1)
+        Integer offset = size * (page - 1);
+        List&lt;Question&gt; questions = questionMapper.list(offset, size);
+        List&lt;QuestionDTO&gt; questionDTOS = new ArrayList&lt;&gt;();
+
+        for (Question question : questions ) {
+            User user = userMapper.findById(question.getCreator());
+            QuestionDTO questionDTO = new QuestionDTO();
+            //拷贝属性
+            //巧妙不使用外键的方法
+            BeanUtils.copyProperties(question, questionDTO);
+            questionDTO.setUser(user);
+            questionDTOS.add(questionDTO);
+        }
+        paginationDTO.setQuestions(questionDTOS);
+
+        return paginationDTO;
+    }
+}
+</code></pre>
+<pre><code class="java">@Data
+public class QuestionDTO {
+        private Integer id;
+        private String title;
+        private String description;
+        private String tag;
+        private Long gmtCreate;
+        private Long gmtModified;
+        private Integer creator;
+        private Integer viewCount;
+        private Integer commentCount;
+        private Integer likeCount;
+        private User user;
+}
+</code></pre>
+<h3 id="5-1-4-Controller"><a href="#5-1-4-Controller" class="headerlink" title="5.1.4 Controller"></a>5.1.4 Controller</h3><pre><code class="java">    @Resource
+    private QuestionService questionService;
+
+    @GetMapping(&quot;/&quot;)
+    public String index(HttpServletRequest request, Model model,
+                        @RequestParam(name = &quot;page&quot;, defaultValue = &quot;1&quot;) Integer page,
+                        @RequestParam(name = &quot;size&quot;, defaultValue = &quot;2&quot;) Integer size) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null ) {
+            return &quot;index&quot;;
+        }
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals(&quot;token&quot;)) {
+                String token = cookie.getValue();
+                User user = userMapper.findByToken(token);
+                if (user != null) {
+                    request.getSession().setAttribute(&quot;user&quot;, user);
+                }
+                break;
+            }
+        }
+        PaginationDTO pagination = questionService.list(page, size);
+        System.out.println(pagination.toString());
+        //model.addAttribute(&quot;questions&quot;, questionList);
+        model.addAttribute(&quot;pagination&quot;, pagination);
+        return &quot;index&quot;;
+    }
+}
+</code></pre>
+<h3 id="5-1-5-html"><a href="#5-1-5-html" class="headerlink" title="5.1.5 html"></a>5.1.5 html</h3><p><img src="/Users/yukino/Desktop/study/SpringBoot/myself/markdown/博客/码问/pic/13.png" alt="image-20210101174404626"></p>
+<p><img src="/Users/yukino/Desktop/study/SpringBoot/myself/markdown/博客/码问/pic/14.png" alt="image-20210101174526668"></p>
+<pre><code class="html">&lt;div class=&quot;col-lg-9 col-md-12 col-sm-12 col-xs-12&quot;&gt;
+            &lt;h2&gt;&lt;span class=&quot;glyphicon glyphicon-list-alt&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;发起&lt;/h2&gt;
+            &lt;hr&gt;
+
+            &lt;div class=&quot;media&quot; th:each=&quot;question : ${pagination.getQuestions()}&quot;}&gt;
+                &lt;div class=&quot;media-left&quot;&gt;
+                    &lt;a href=&quot;#&quot;&gt;
+                        &lt;img class=&quot;media-object img-rounded&quot; src=&quot;/img/2.jpg&quot; width=&quot;43px&quot; height=&quot;43px&quot; alt=&quot;...&quot;&gt;
+                    &lt;/a&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;media-body&quot;&gt;
+                    &lt;h4 class=&quot;media-heading&quot; th:text=&quot;${question.getTitle()}&quot;&gt;&lt;/h4&gt;
+                    &lt;span th:text=&quot;${question.getDescription()}&quot;&gt;&lt;/span&gt; &lt;br&gt;
+                    &lt;span text-desc&gt;&lt;span th:text=&quot;${question.getCommentCount()}&quot;&gt;&lt;/span&gt;个回复 &lt;span th:text=&quot;${question.getViewCount()}&quot;&gt;&lt;/span&gt;31 次浏览 &lt;span th:text=&quot;${#dates.format(question.getGmtCreate(), &#39;dd MMM yyyy&#39;)}&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;nav aria-label=&quot;Page navigation&quot;&gt;
+                &lt;ul class=&quot;pagination&quot;&gt;
+                    &lt;div th:text=&quot;yukino+${pagination.isShowFirstPage()}&quot;&gt;&lt;/div&gt;
+                    &lt;li th:if=&quot;${pagination.isShowFirstPage()}&quot;&gt;
+                        &lt;a href=&quot;/?page=1&quot; aria-label=&quot;Previous&quot;&gt;
+                            &lt;span aria-hidden=&quot;true&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li th:if=&quot;${pagination.isShowPrevious()}&quot;&gt;
+                        &lt;a href=&quot;@{/(page=${pagination.page - 1})}&quot; aria-label=&quot;Previous&quot;&gt;
+                            &lt;span aria-hidden=&quot;true&quot;&gt;&amp;lt;&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li th:each=&quot;page : ${pagination.getPages()}&quot; th:class=&quot;${pagination.getPage() == page} ? &#39;active&#39; : &#39;&#39;&quot;&gt;
+                        &lt;a th:href=&quot;@{/(page=${page})}&quot; th:text=&quot;${page}&quot; &gt;
+
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li th:if=&quot;${pagination.isShowNext()}&quot;&gt;
+                        &lt;a href=&quot;@{/(page=${pagination.page + 1})}&quot; aria-label=&quot;Previous&quot;&gt;
+                            &lt;span aria-hidden=&quot;true&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li th:if=&quot;${pagination.isShowEndPage()}&quot;&gt;
+                        &lt;a href=&quot;@{/(page=${pagination.getTotalPage()})}&quot; aria-label=&quot;Previous&quot;&gt;
+                            &lt;span aria-hidden=&quot;true&quot;&gt;&amp;gt;&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/nav&gt;
+        &lt;/div&gt;
+</code></pre>
+<h2 id="5-2-pageHelper-分页"><a href="#5-2-pageHelper-分页" class="headerlink" title="5.2 pageHelper 分页"></a>5.2 pageHelper 分页</h2><h3 id="5-2-1-分页失效1"><a href="#5-2-1-分页失效1" class="headerlink" title="5.2.1 分页失效1"></a>5.2.1 分页失效1</h3><p><strong>pageHelper版本低导致 pageInfo 数据不准确</strong></p>
+<pre><code class="xml">        &lt;!--pageHelper--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt;
+            &lt;artifactId&gt;pagehelper-spring-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;1.3.0&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<p>当时 1.2.0 会失效，1.3.0 正常</p>
+<h3 id="5-2-2-分页失效2"><a href="#5-2-2-分页失效2" class="headerlink" title="5.2.2 分页失效2"></a>5.2.2 分页失效2</h3><p><strong>pageHelper逻辑复杂导致 pageInfo 数据不准确</strong></p>
+<pre><code class="java">    @GetMapping(&quot;/&quot;)
+    public String index(HttpServletRequest request, Model model,
+                @RequestParam(name = &quot;pageNum&quot;, defaultValue = &quot;1&quot;) Integer pageNum,
+                @RequestParam(name = &quot;pageSize&quot;, defaultValue = &quot;5&quot;) Integer pageSize) {
+            Cookie[] cookies = request.getCookies();
+            if (cookies == null ) {
+                return &quot;index&quot;;
+            }
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(&quot;token&quot;)) {
+                    String token = cookie.getValue();
+                    User user = userMapper.findByToken(token);
+                    if (user != null) {
+                        request.getSession().setAttribute(&quot;user&quot;, user);
+                    }
+                    break;
+                }
+            }
+
+            PageHelper.startPage(1,5);
+            /*这种写法有问题*/
+            List&lt;QuestionDTO&gt; list = questionService.selectQuestions();
+            PageInfo pageInfo = PageInfo.of(list);
+            model.addAttribute(&quot;pagination&quot;, pageInfo);
+
+            return &quot;index&quot;;
+    }
+</code></pre>
+<pre><code class="java">@Service
+public class QuestionService {
+    @Resource
+    QuestionMapper questionMapper;
+
+    @Resource
+    UserMapper userMapper;
+    //获取所有的问题，添加了User类对象
+    public List&lt;QuestionDTO&gt; selectQuestions() {
+        List&lt;QuestionDTO&gt; questionDTOS = new ArrayList&lt;&gt;();
+        List&lt;Question&gt; questions = questionMapper.selectAllQuestions();
+        for (Question question : questions) {
+            QuestionDTO questionDTO = new QuestionDTO();
+            BeanUtils.copyProperties(question, questionDTO);
+            User user = userMapper.findById(question.getCreator());
+            questionDTO.setUser(user);
+            questionDTOS.add(questionDTO);
+        }
+        return questionDTOS;
+    }
+}
+</code></pre>
+<p>以上这种写法，把pageInfo放在了controller层，service内数据复杂，使sql数据没有紧接着<code>PageHelper.startPage(1,5);</code></p>
+<p>解决方案是，将pageInfo放在service层，查询数据直接来自mapper层，在<code></code>PageHelper.startPage(1,5);<code>和</code>sql`间无多余的逻辑，然后将pageInfo封装后，传给controller</p>
+<h2 id="5-2-3-下拉菜单分页"><a href="#5-2-3-下拉菜单分页" class="headerlink" title="5.2.3 下拉菜单分页"></a>5.2.3 下拉菜单分页</h2><pre><code class="xml">        &lt;!--pageHelper--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt;
+            &lt;artifactId&gt;pagehelper-spring-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;1.3.0&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<pre><code class="properties">#分页插件
+#pagehelper分页插件配置
+pagehelper.helperDialect=mysql
+pagehelper.reasonable=true
+pagehelper.supportMethodsArguments=true
+pagehelper.params=count=countSql
+</code></pre>
+<pre><code class="java">@Service
+public class QuestionService {
+    @Resource
+    QuestionMapper questionMapper;
+
+    @Resource
+    UserMapper userMapper;
+    //获取所有的问题，添加了User类对象
+    public Map&lt;String, Object&gt; selectQuestions(Integer pageNum, Integer pageSize) {
+        Map&lt;String, Object&gt; allData = new HashMap();
+        List&lt;QuestionDTO&gt; questionDTOS =  new ArrayList&lt;&gt;();
+        //获取pageInfo
+        PageHelper.startPage(pageNum,pageSize);
+        List&lt;Question&gt; questions = questionMapper.selectAllQuestions();
+        PageInfo pageInfo = PageInfo.of(questions);
+
+        //获取questionDTO
+        for (Question question : questions) {
+            QuestionDTO questionDTO = new QuestionDTO();
+            BeanUtils.copyProperties(question, questionDTO);
+            questionDTOS.add(questionDTO);
+        }
+
+        allData.put(&quot;questionDTOS&quot;, questionDTOS);
+        allData.put(&quot;pageInfo&quot;, pageInfo);
+        return allData;
+    }
+}
+</code></pre>
+<pre><code class="java">    @RequestMapping(&quot;/&quot;)
+    public String index(HttpServletRequest request, Model model,
+                       @RequestParam(name = &quot;page&quot;, defaultValue = &quot;1&quot;) Integer pageNum,
+                       @RequestParam(name = &quot;pageSize&quot;, defaultValue = &quot;5&quot;) Integer pageSize) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null ) {
+            return &quot;index&quot;;
+        }
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals(&quot;token&quot;)) {
+                String token = cookie.getValue();
+                User user = userMapper.findByToken(token);
+                if (user != null) {
+                    request.getSession().setAttribute(&quot;user&quot;, user);
+                }
+                break;
+            }
+        }
+
+        Map&lt;String, Object&gt; allData = questionService.selectQuestions(pageNum, pageSize);
+        List&lt;QuestionDTO&gt; questionDTOS = (List&lt;QuestionDTO&gt;) allData.get(&quot;questionDTOS&quot;);
+        PageInfo pageInfo =  (PageInfo) allData.get(&quot;pageInfo&quot;);
+        model.addAttribute(&quot;questionDTOS&quot;, questionDTOS);
+        model.addAttribute(&quot;pageInfo&quot;, pageInfo);
+        return &quot;index1&quot;;
+    }
+</code></pre>
+<pre><code class="xml">            &lt;div class=&quot;media&quot; th:each=&quot;questionDTO : ${questionDTOS}&quot;}&gt;
+                &lt;div class=&quot;media-left&quot;&gt;
+                    &lt;a href=&quot;#&quot;&gt;
+                        &lt;img class=&quot;media-object img-rounded&quot; src=&quot;/img/2.jpg&quot; width=&quot;43px&quot; height=&quot;43px&quot; alt=&quot;...&quot;&gt;
+                    &lt;/a&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;media-body&quot;&gt;
+                    &lt;h4 class=&quot;media-heading&quot; th:text=&quot;${questionDTO.getTitle()}&quot;&gt;&lt;/h4&gt;
+                    &lt;span th:text=&quot;${questionDTO.getDescription()}&quot;&gt;&lt;/span&gt; &lt;br&gt;
+                    &lt;span text-desc&gt;&lt;span th:text=&quot;${questionDTO.getCommentCount()}&quot;&gt;&lt;/span&gt;个回复 &lt;span th:text=&quot;${questionDTO.getViewCount()}&quot;&gt;&lt;/span&gt;31 次浏览 &lt;span th:text=&quot;${#dates.format(questionDTO.getGmtCreate(), &#39;dd MMM yyyy&#39;)}&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;select class=&quot;poi-pager__item_middle_select poi-form__control form-control&quot; onchange=&quot;location.href=this.value&quot;&gt;
+                &lt;option selected=&quot;&quot;  th:selected=&quot;${pageInfo.getPageNum() == index}&quot; th:each=&quot;index : ${#numbers.sequence(1,pageInfo.pages)}&quot; th:value=&quot;@{/(page=${index})}&quot;&gt;
+                    第 [(${index})] 页
+                &lt;/option&gt;
+            &lt;/select&gt;
+</code></pre>
+<p><strong>注意</strong></p>
+<p><code>onchange=&quot;location.href=this.value&quot;</code>是读取option的value，然后跳转，在重新加载整个页面</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/15.png" alt="image-20210103163305449"></p>
+<h1 id="6-集成-markdown-editor"><a href="#6-集成-markdown-editor" class="headerlink" title="6. 集成 markdown editor"></a>6. 集成 markdown editor</h1><ol>
+<li>官网</li>
+</ol>
+<p><code>http://editor.md.ipandao.com/</code></p>
+<ol start="2">
+<li>用法</li>
+</ol>
+<ul>
+<li>下载github 源码</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/20.png" alt="image-20210109163819325"></p>
+<ul>
+<li>将源码导入项目</li>
+</ul>
+<p><img src="/Users/yukino/Desktop/study/SpringBoot/myself/markdown/博客/码问/pic/21.png" alt="image-20210109163951258"></p>
+<p>如图，将源码导入editormd文件夹</p>
+<ul>
+<li>页面引入</li>
+</ul>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;editormd/css/editormd.css&quot; /&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;test-editor&quot;&gt;
+    &lt;textarea style=&quot;display:none;&quot;&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+&lt;script src=&quot;https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;editormd/editormd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    $(function() {
+        var editor = editormd(&quot;test-editor&quot;, {
+             width  : &quot;100%&quot;,
+             height : &quot;1500px&quot;,
+            path   : &quot;editormd/lib/&quot;
+        });
+    });
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li>效果图</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/22.png" alt="image-20210109164213690"></p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/appreciation/aplipay.png"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/appreciation/aplipay.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2021/01/19/技术/FTP服务器/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                ubuntu搭建FTP服务器</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2021/01/18/技术/码问社区源码解析 - 1/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                码问社区源码解析(1)</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "4asHXF3SLvCKEfXTHBmYKjpi-MdYXbMMI",
+        appKey: "xXS4NNFP7X7Su7AIwt86pHXj",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="/#" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico" itemprop="image" alt="Yukino" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="/#" itemprop="url" rel="author">Yukino</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div> 
+    <!--站内搜索模块-->   
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input
+        type="text"
+        class="ins-search-input"
+        placeholder="请输入关键词..."
+      />
+      <span class="ins-close ins-selectable"
+        ><i class="fa fa-times-circle"></i
+      ></span>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<!--yukino:script中的变量是用于站内搜索-->
+<script>
+  //function后面的变量window是形参，最后window是传入的实际参数。
+  (function (window) {
+    var INSIGHT_CONFIG = {
+      TRANSLATION: {
+        //yukino:insight变量是来自zh-cn.yml,但是怎么获取的不清楚，为何是zh-cn.yml而非en.yml也不清楚
+        POSTS: '文章',
+        // PAGES: '页面',
+        CATEGORIES: '分类',
+        TAGS: '标签',
+      },
+      ROOT_URL: "/",
+      CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 yukino<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2020</p>
+    </div>
+    <div class="footer-device">
+      <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank"
+            style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i
+            class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a
+            href="https://2heng.xin/" target="_blank"
+            style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a
+            href="https://www.hojun.cn/" target="_blank"
+            style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo,
+          Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+  /* <![CDATA[ */
+  if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    var Poi = { "pjax": "1", "movies": { "url": "https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/video", "name": "yukino_360p.mp4", "live": "close" }, "windowheight": "fixed", "codelamp": "close", "ajaxurl": "", "order": "asc", "formpostion": "bottom" };
+  } else {
+    var Poi = { "pjax": "1", "movies": { "url": "https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/video", "name": "yukino_360p.mp4", "live": "open" }, "windowheight": "auto", "codelamp": "close", "ajaxurl": "", "order": "asc", "formpostion": "bottom" };
+  }
+/* ]]> */
+
+</script>
+<script>
+  $(document).ready(function () {
+    if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+      if ($(".pattern-center").length > 0) { //有图的情况
+        tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+        });
+      } else {
+        tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+        });
+      }
+      var offsetTop = $('.toc').offset().top - 95;
+      window.onscroll = function () {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop >= offsetTop) {
+          $('.toc').addClass('toc-fixed');
+        } else {
+          $('.toc').removeClass('toc-fixed');
+        }
+      }
+    }
+  });
+</script>
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">Yukino</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/Yukino831143" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="http://weibo.com/mashirozx?is_all=1" class="fa fa-weibo" target="_blank" style="color: #dd4b39; margin-left:20px"></a>
+      
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=954655431&site=qq&menu=yes" class="fa fa-qq" target="_blank" style="color: #25c6fe; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/随想/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/番剧/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番剧
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/读书/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  读书
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="363423188"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>

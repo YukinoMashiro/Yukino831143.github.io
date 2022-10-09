@@ -1,0 +1,1635 @@
+<!-- yukino:_partial/head.ejs主要完成一些页面初始化工作，但是在页面上基本表现不出来 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    
+    <title itemprop="name">
+      码问社区源码解析(1) | yukino
+    </title>
+    <!-- yukino:这里是网页标签的小图标 -->
+    
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/css/lib.min.css" media="all">
+    <link rel="stylesheet" href="/css/font.css" media="all">
+    <link rel="stylesheet" href="/css/insight.css" media="all">
+    <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+    <link rel="stylesheet" href="/css/zoom.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+    <!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+    <script>
+      /*Initial Variables*/
+      var mashiro_option = new Object();
+      var mashiro_global = new Object();
+      mashiro_option.NProgressON = true;
+      /*
+       * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+       * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+       */
+      mashiro_option.email_domain = "";
+      mashiro_option.email_name = "";
+      mashiro_option.cookie_version_control = "";
+      mashiro_option.qzone_autocomplete = false;
+      mashiro_option.site_name = "Yukino";
+      mashiro_option.author_name = "";
+      mashiro_option.site_url = "/";
+      mashiro_option.v_appId = "4asHXF3SLvCKEfXTHBmYKjpi-MdYXbMMI";
+      mashiro_option.v_appKey = "xXS4NNFP7X7Su7AIwt86pHXj";
+      mashiro_option.mathjax = "0";
+      mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/";
+      mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+      // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+      // mashiro_option.float_player_on = true;
+
+      /*End of Initial Variables*/
+    </script>
+    <script type="text/javascript">
+      var bg = "https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/1.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/2.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/3.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/4.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/5.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/6.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/7.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/8.webp".split(",");
+      var bgindex = Math.floor(Math.random() * bg.length);
+      if (!!window.ActiveXObject || "ActiveXObject" in window) {
+        //is IE?
+        alert("朋友，IE浏览器未适配哦~");
+      }
+    </script>
+    <style type="text/css">
+      .hljs-ln {
+        border-collapse: collapse;
+      }
+      .hljs-ln td {
+        padding: 0;
+      }
+      .hljs-ln-n:before {
+        content: attr(data-line-number);
+      }
+    </style>
+    <style type="text/css">
+      .site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+    </style>
+  </head>
+</html>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <!--yukino:显示多种社交联系方式,视频播放器,首页下滑箭头-->
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="/">
+          <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico" />
+        </a>
+      </div>
+      <div class="header-info">
+        <p>やはり俺の青春ラブコメはまちがっている</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img
+              class="flipx"
+              src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/next-b.svg"
+            />
+          </li>
+          <!--yukino:显示多种社交联系方式-->
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="github"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/github.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="jianshu"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/jianshu.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="sina"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/sina.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="wangyiyun"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/wangyiyun.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="zhihu"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/zhihu.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="email"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/email.svg" />
+            </a>
+          </li>
+            
+          <li class="wechat">
+            <a href="/#">
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/wechat.png" />
+            </a>
+            <div class="wechatInner">
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/social/wechat.png" />
+            </div>
+          </li>
+            
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/next-b.svg" />
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <!--yukino:播放器-->
+  <div id="video-container" style="">
+    <video
+      style="object-fit: fill;"
+      id="bgvideo"
+      class="video"
+      video-name=""
+      src=""
+      width="auto"
+      preload="auto"
+    ></video>
+    <div id="video-btn" class="loadvideo videolive"></div>
+    <div id="video-add"></div>
+    <div class="video-stu"></div>
+  </div>
+  <!--下滑箭头，点击箭头，页面从主页壁纸滑向博客页面-->
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true"> </i>
+    </span>
+  </div>
+</div>
+
+    <div id="page" class="site wrapper">
+      <!--yukino:头部的menu部分，首页，归档，清单，友人帐...-->
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">Yukino</span>
+            <span class="shironeko"></span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search"> </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1"></div>
+      <div class="line line2"></div>
+      <div class="line line3"></div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <!--yukino:头部的menu部分，首页，归档，清单，友人帐...-->
+          <ul id="menu-new" class="menu">
+            
+            <li>
+              <a href="/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-fort-awesome faa-shake"
+                    aria-hidden="true"
+                  ></i>
+                  首页
+                </span>
+              </a>
+              
+            </li>
+            
+            <li>
+              <a href="/archives">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-archive faa-shake"
+                    aria-hidden="true"
+                  ></i>
+                  归档
+                </span>
+              </a>
+              
+              <ul class="sub-menu">
+                
+                <li>
+                  <a
+                    href="/categories/技术/"
+                  >
+                    <i
+                      class="fa fa-code"
+                      aria-hidden="true"
+                    ></i>
+                    技术
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/生活/"
+                  >
+                    <i
+                      class="fa fa-file-text-o"
+                      aria-hidden="true"
+                    ></i>
+                    生活
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/随想/"
+                  >
+                    <i
+                      class="fa fa-commenting-o"
+                      aria-hidden="true"
+                    ></i>
+                    随想
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/番剧/"
+                  >
+                    <i
+                      class="fa fa-film faa-vertical"
+                      aria-hidden="true"
+                    ></i>
+                    番剧
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/读书/"
+                  >
+                    <i
+                      class="fa fa-th-list faa-bounce"
+                      aria-hidden="true"
+                    ></i>
+                    读书
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/music/"
+                  >
+                    <i
+                      class="fa fa-headphones"
+                      aria-hidden="true"
+                    ></i>
+                    歌单
+                  </a>
+                </li>
+                
+              </ul>
+              
+            </li>
+            
+            <li>
+              <a href="/comment/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-pencil-square-o faa-tada"
+                    aria-hidden="true"
+                  ></i>
+                  留言板
+                </span>
+              </a>
+              
+            </li>
+            
+            <li>
+              <a href="/donate/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-heart faa-pulse"
+                    aria-hidden="true"
+                  ></i>
+                  赞赏
+                </span>
+              </a>
+              
+            </li>
+            
+            <li>
+              <a href="/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-leaf faa-wrench"
+                    aria-hidden="true"
+                  ></i>
+                  关于
+                </span>
+              </a>
+              
+              <ul class="sub-menu">
+                
+                <li>
+                  <a
+                    href="/about/"
+                  >
+                    <i
+                      class="fa fa-meetup"
+                      aria-hidden="true"
+                    ></i>
+                    我？
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/theme-sakura/"
+                  >
+                    <i
+                      class="fa iconfont icon-sakura"
+                      aria-hidden="true"
+                    ></i>
+                    主题
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/lab/"
+                  >
+                    <i
+                      class="fa fa-cogs"
+                      aria-hidden="true"
+                    ></i>
+                    Lab
+                  </a>
+                </li>
+                
+              </ul>
+              
+            </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <!--文章详情页的banner从使用封面图片，修改为自定义，使用md文章中的属性 banner 20200712-->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/banner/1.jpg);" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/banner/1.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      码问社区源码解析(1)</h1>
+      <p class="entry-census">
+        <span>
+          <a href="/#">
+            <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico">
+          </a>
+        </span>
+        <span>
+          <a href="/#">Yukino</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-1-18<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="1-问题发布"><a href="#1-问题发布" class="headerlink" title="1.问题发布"></a>1.问题发布</h1><h2 id="1-1-前端界面"><a href="#1-1-前端界面" class="headerlink" title="1.1 前端界面"></a>1.1 前端界面</h2><p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/23.png" alt="image-20210110161226913"></p>
+<h2 id="1-2-文章发布"><a href="#1-2-文章发布" class="headerlink" title="1.2 文章发布"></a>1.2 文章发布</h2><pre><code class="java">    @PostMapping(&quot;/publish&quot;)
+    public String doPublish(
+            @RequestParam(value = &quot;title&quot;, required = false) String title,
+            @RequestParam(value = &quot;description&quot;, required = false) String description,
+            @RequestParam(value = &quot;tag&quot;, required = false) String tag,
+            @RequestParam(value = &quot;id&quot;, required = false) Long id,
+            HttpServletRequest request,
+            Model model) {
+          //用于下面&quot;标题不能为空&quot;等异常状态时，正常内容的回显
+        model.addAttribute(&quot;title&quot;, title);
+        model.addAttribute(&quot;description&quot;, description);
+        model.addAttribute(&quot;tag&quot;, tag);
+        model.addAttribute(&quot;tags&quot;, TagCache.get());
+
+        if (StringUtils.isBlank(title)) {
+            model.addAttribute(&quot;error&quot;, &quot;标题不能为空&quot;);
+            return &quot;publish&quot;;
+        }
+        if (StringUtils.isBlank(description)) {
+            model.addAttribute(&quot;error&quot;, &quot;问题补充不能为空&quot;);
+            return &quot;publish&quot;;
+        }
+        if (StringUtils.isBlank(tag)) {
+            model.addAttribute(&quot;error&quot;, &quot;标签不能为空&quot;);
+            return &quot;publish&quot;;
+        }
+
+          //获取无效标签
+        String invalid = TagCache.filterInvalid(tag);
+        if (StringUtils.isNotBlank(invalid)) {
+            model.addAttribute(&quot;error&quot;, &quot;输入非法标签:&quot; + invalid);
+            return &quot;publish&quot;;
+        }
+
+        User user = (User) request.getSession().getAttribute(&quot;user&quot;);
+        if (user == null) {
+            model.addAttribute(&quot;error&quot;, &quot;用户未登录&quot;);
+            return &quot;publish&quot;;
+        }
+
+        Question question = new Question();
+        question.setTitle(title);
+        question.setDescription(description);
+        question.setTag(tag);
+        question.setCreator(user.getId());
+        question.setId(id);
+        questionService.createOrUpdate(question);
+        return &quot;redirect:/&quot;;
+    }
+</code></pre>
+<p><strong>注意</strong></p>
+<ol>
+<li><p>文章新建时，接收的参数id为空(tag:mashiro)</p>
+</li>
+<li><p>需要对”标题”(null)，”内容”(null)，”标签”(null or invalid)，”用户”(login)的异常状态进行处理(tag:mashiro)</p>
+</li>
+</ol>
+<h3 id="1-2-1-标签管理"><a href="#1-2-1-标签管理" class="headerlink" title="1.2.1 标签管理"></a>1.2.1 标签管理</h3><pre><code class="java">public class TagCache {
+    public static List&lt;TagDTO&gt; get() {
+        List&lt;TagDTO&gt; tagDTOS = new ArrayList&lt;&gt;();
+        TagDTO program = new TagDTO();
+        program.setCategoryName(&quot;开发语言&quot;);
+        program.setTags(Arrays.asList(&quot;javascript&quot;, &quot;php&quot;, &quot;css&quot;, &quot;html&quot;, &quot;html5&quot;, &quot;java&quot;, &quot;node.js&quot;, &quot;python&quot;, &quot;c++&quot;, &quot;c&quot;, &quot;golang&quot;, &quot;objective-c&quot;, &quot;typescript&quot;, &quot;shell&quot;, &quot;swift&quot;, &quot;c#&quot;, &quot;sass&quot;, &quot;ruby&quot;, &quot;bash&quot;, &quot;less&quot;, &quot;asp.net&quot;, &quot;lua&quot;, &quot;scala&quot;, &quot;coffeescript&quot;, &quot;actionscript&quot;, &quot;rust&quot;, &quot;erlang&quot;, &quot;perl&quot;));
+        tagDTOS.add(program);
+
+        TagDTO framework = new TagDTO();
+        framework.setCategoryName(&quot;平台框架&quot;);
+        framework.setTags(Arrays.asList(&quot;laravel&quot;, &quot;spring&quot;, &quot;express&quot;, &quot;django&quot;, &quot;flask&quot;, &quot;yii&quot;, &quot;ruby-on-rails&quot;, &quot;tornado&quot;, &quot;koa&quot;, &quot;struts&quot;));
+        tagDTOS.add(framework);
+
+
+        TagDTO server = new TagDTO();
+        server.setCategoryName(&quot;服务器&quot;);
+        server.setTags(Arrays.asList(&quot;linux&quot;, &quot;nginx&quot;, &quot;docker&quot;, &quot;apache&quot;, &quot;ubuntu&quot;, &quot;centos&quot;, &quot;缓存 tomcat&quot;, &quot;负载均衡&quot;, &quot;unix&quot;, &quot;hadoop&quot;, &quot;windows-server&quot;));
+        tagDTOS.add(server);
+
+        TagDTO db = new TagDTO();
+        db.setCategoryName(&quot;数据库&quot;);
+        db.setTags(Arrays.asList(&quot;mysql&quot;, &quot;redis&quot;, &quot;mongodb&quot;, &quot;sql&quot;, &quot;oracle&quot;, &quot;nosql memcached&quot;, &quot;sqlserver&quot;, &quot;postgresql&quot;, &quot;sqlite&quot;));
+        tagDTOS.add(db);
+
+        TagDTO tool = new TagDTO();
+        tool.setCategoryName(&quot;开发工具&quot;);
+        tool.setTags(Arrays.asList(&quot;git&quot;, &quot;github&quot;, &quot;visual-studio-code&quot;, &quot;vim&quot;, &quot;sublime-text&quot;, &quot;xcode intellij-idea&quot;, &quot;eclipse&quot;, &quot;maven&quot;, &quot;ide&quot;, &quot;svn&quot;, &quot;visual-studio&quot;, &quot;atom emacs&quot;, &quot;textmate&quot;, &quot;hg&quot;));
+        tagDTOS.add(tool);
+        return tagDTOS;
+    }
+
+    public static String filterInvalid(String tags) {
+        String[] split = StringUtils.split(tags, &quot;,&quot;);
+        List&lt;TagDTO&gt; tagDTOS = get();
+
+        //获取所有标签 72个
+        List&lt;String&gt; tagList = tagDTOS.stream().flatMap(tag -&gt; tag.getTags().stream()).collect(Collectors.toList());
+        String invalid = Arrays.stream(split).filter(t -&gt; StringUtils.isBlank(t) || !tagList.contains(t)).collect(Collectors.joining(&quot;,&quot;));
+        return invalid;
+    }
+
+    public static void main(String[] args) {
+        int i = (5 - 1) &gt;&gt;&gt; 1;
+        System.out.println(i);
+    }
+}
+</code></pre>
+<p><strong>注意</strong></p>
+<p><code>filterInvalid</code>函数的表达方式可以重点掌握(tag:mashiro)</p>
+<h2 id="1-3-文章修改"><a href="#1-3-文章修改" class="headerlink" title="1.3 文章修改"></a>1.3 文章修改</h2><p>文章修改与文章新建区别在于，前者会在form标签中增加隐藏域标签，后端接受函数是相同的</p>
+<pre><code class="html">&lt;input type=&quot;hidden&quot; name=&quot;id&quot; value=&quot;6&quot;&gt;
+</code></pre>
+<pre><code class="java">    public void createOrUpdate(Question question) {
+        if (question.getId() == null) {
+            // 创建
+            question.setGmtCreate(System.currentTimeMillis());
+            question.setGmtModified(question.getGmtCreate());
+            question.setViewCount(0);
+            question.setLikeCount(0);
+            question.setCommentCount(0);
+            questionMapper.insert(question);
+        } else {
+            // 更新
+
+            Question dbQuestion = questionMapper.selectByPrimaryKey(question.getId());
+            //判断是否修改文章是否在数据库对应
+            if (dbQuestion == null) {
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
+
+            //判断修改操作人与文章创建人是否一致
+            if (dbQuestion.getCreator().longValue() != question.getCreator().longValue()) {
+                throw new CustomizeException(CustomizeErrorCode.INVALID_OPERATION);
+            }
+
+            Question updateQuestion = new Question();
+            updateQuestion.setGmtModified(System.currentTimeMillis());
+            updateQuestion.setTitle(question.getTitle());
+            updateQuestion.setDescription(question.getDescription());
+            updateQuestion.setTag(question.getTag());
+              //    通过 example 自定义 sql操作
+            QuestionExample example = new QuestionExample();
+            example.createCriteria()
+                    .andIdEqualTo(question.getId());
+            int updated = questionMapper.updateByExampleSelective(updateQuestion, example);
+            if (updated != 1) {
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
+        }
+    }
+</code></pre>
+<p><strong>注意</strong></p>
+<ol>
+<li>必须判断修改文章是否在数据库内(tag:mashiro)</li>
+<li>必须判断文章修改者与文章创建者是否是同一人(tag:mashiro)</li>
+</ol>
+<h1 id="2-回复功能"><a href="#2-回复功能" class="headerlink" title="2. 回复功能"></a>2. 回复功能</h1><h3 id="2-1-前端界面"><a href="#2-1-前端界面" class="headerlink" title="2.1 前端界面"></a>2.1 前端界面</h3><p>文章回复(1级评论)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/24.png" alt="image-20210110164755810"></p>
+<p>评论回复(2级评论)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/25.png" alt="image-20210110171341280"></p>
+<h3 id="2-2-controller-接受-ajax数据"><a href="#2-2-controller-接受-ajax数据" class="headerlink" title="2.2 controller 接受 ajax数据"></a>2.2 controller 接受 ajax数据</h3><p>传输类型</p>
+<pre><code class="java">@Data
+public class CommentCreateDTO {
+    private Long parentId;
+    private String content;
+    private Integer type;
+}
+</code></pre>
+<p>接受ajax数据，并存入数据库</p>
+<pre><code class="java">    @ResponseBody
+    @RequestMapping(value = &quot;/comment&quot;, method = RequestMethod.POST)
+    //@RequestBody主要用来接收前端传递给后端的json字符串中的数据的(请求体中的数据的)；
+    public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
+                       HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute(&quot;user&quot;);
+        if (user == null) {
+            return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
+        }
+        //StringUtils.isBlank
+        //1.是否为null
+        //2.是否为&quot;&quot;
+        //3.&quot; &quot;,字符串中间有空格，制表符、换行符、换页符和回车
+        if (commentCreateDTO == null || StringUtils.isBlank(commentCreateDTO.getContent())) {
+            return ResultDTO.errorOf(CustomizeErrorCode.CONTENT_IS_EMPTY);
+        }
+
+        Comment comment = new Comment();
+          //注意：1级评论时，ParentId为 question id，当2级评论时，ParentId 为 上一级评论Id
+        comment.setParentId(commentCreateDTO.getParentId());
+        comment.setContent(commentCreateDTO.getContent());
+        comment.setType(commentCreateDTO.getType());
+        comment.setGmtModified(System.currentTimeMillis());
+        comment.setGmtCreate(System.currentTimeMillis());
+        comment.setCommentator(user.getId());
+        comment.setLikeCount(0L);
+        commentService.insert(comment, user);
+        return ResultDTO.okOf();
+    }
+</code></pre>
+<p><strong>注意</strong></p>
+<ol>
+<li>异常处理 : 用户(login)、内容(null)  (tag:mashiro)</li>
+<li>ParentId 可以为问题 id，也可以为 评论id。这取决于 type 的值(tag:mashiro)</li>
+</ol>
+<p>评论insert详情，需要判断是1级评论还是2级评论</p>
+<pre><code class="java">@Service
+public class CommentService {
+    //@Transactional //https://zhuanlan.zhihu.com/p/47362056
+    //1. 一般标记在public 方法
+    //2. @Transactional(rollbackFor=Exception.class)，如果方法抛出异常，就会回滚，数据库里面的数据也会回滚。
+    //3. 在@Transactional注解中如果不配置rollbackFor属性,那么事物只会在遇到RuntimeException的时候才会回滚,加上rollbackFor=Exception.class,可以让事物在遇到非运行时异常时也回滚
+    @Transactional
+    public void insert(Comment comment, User commentator) {
+        //评论需要在某个问题或者某个评论下进行
+        if (comment.getParentId() == null || comment.getParentId() == 0) {
+            throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);
+        }
+        // type == 1 : 1级评论(对问题评论) type == 2 : 2级评论(对评论进行评论)
+        if (comment.getType() == null || !CommentTypeEnum.isExist(comment.getType())) {
+            throw new CustomizeException(CustomizeErrorCode.TYPE_PARAM_WRONG);
+        }
+
+        if (comment.getType() == CommentTypeEnum.COMMENT.getType()) {
+
+            // 2级评论，回复评论
+
+            //查找父评论
+            Comment dbComment = commentMapper.selectByPrimaryKey(comment.getParentId());
+            if (dbComment == null) {
+                throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
+            }
+
+            // 查找父评论对应的问题
+            Question question = questionMapper.selectByPrimaryKey(dbComment.getParentId());
+            if (question == null) {
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
+
+            commentMapper.insert(comment);
+
+            // 增加评论数
+            Comment parentComment = new Comment();
+            parentComment.setId(comment.getParentId());
+            parentComment.setCommentCount(1);
+            commentExtMapper.incCommentCount(parentComment);
+
+            // 创建通知
+            createNotify(comment, dbComment.getCommentator(), commentator.getName(), question.getTitle(), NotificationTypeEnum.REPLY_COMMENT, question.getId());
+        } else {
+            // 1级评论，回复问题
+            Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
+            if (question == null) {
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
+          //此评论的评论数初始化为0
+            comment.setCommentCount(0);
+            commentMapper.insert(comment);
+            question.setCommentCount(1);
+          //question评论数自增
+            questionExtMapper.incCommentCount(question);
+
+            // 创建通知
+            createNotify(comment, question.getCreator(), commentator.getName(), question.getTitle(), NotificationTypeEnum.REPLY_QUESTION, question.getId());
+        }
+    }  
+}
+</code></pre>
+<p><strong>注意</strong></p>
+<ol>
+<li>关注<code>@Transactional</code>的用法(tag:mashiro)</li>
+<li>注意异常处理意识</li>
+</ol>
+<pre><code class="java">public enum CommentTypeEnum {
+    //枚举了QUESTION和COMMENT，type类型是公有的。1,2作为构造参数，赋值给type
+    QUESTION(1),
+    COMMENT(2);
+    private Integer type;
+
+
+    public Integer getType() {
+        return type;
+    }
+
+    CommentTypeEnum(Integer type) {
+        this.type = type;
+    }
+
+    public static boolean isExist(Integer type) {
+        //CommentTypeEnum.values() 代表全部枚举变量
+        //1. type = 1 name = &quot;QUESTION&quot; ordinal = 0
+        //2. type = 2 name = &quot;COMMENT&quot; ordinal = 1
+        for (CommentTypeEnum commentTypeEnum : CommentTypeEnum.values()) {
+            if (commentTypeEnum.getType() == type) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+</code></pre>
+<p>question评论数自增</p>
+<pre><code class="xml">    &lt;update id=&quot;incCommentCount&quot; parameterType=&quot;life.majiang.community.model.Question&quot;&gt;
+    update QUESTION
+    set
+    COMMENT_COUNT = COMMENT_COUNT + #{commentCount,jdbcType=INTEGER}
+    where id = #{id}
+    &lt;/update&gt;
+</code></pre>
+<h1 id="3-首页问题排序"><a href="#3-首页问题排序" class="headerlink" title="3. 首页问题排序"></a>3. 首页问题排序</h1><h2 id="3-1-前端页面"><a href="#3-1-前端页面" class="headerlink" title="3.1 前端页面"></a>3.1 前端页面</h2><p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/26.png" alt="image-20210110175643394"></p>
+<h2 id="3-2-controller"><a href="#3-2-controller" class="headerlink" title="3.2 controller"></a>3.2 controller</h2><pre><code class="java">    @GetMapping(&quot;/&quot;)
+    public String index(Model model,
+                        @RequestParam(name = &quot;page&quot;, defaultValue = &quot;1&quot;) Integer page,
+                        @RequestParam(name = &quot;size&quot;, defaultValue = &quot;10&quot;) Integer size,
+                        @RequestParam(name = &quot;search&quot;, required = false) String search,
+                        @RequestParam(name = &quot;tag&quot;, required = false) String tag,
+                        @RequestParam(name = &quot;sort&quot;, required = false) String sort) {
+        //对热词进行检索，对结果进行排序后的结果
+        PaginationDTO pagination = questionService.list(search, tag, sort, page, size);
+        //获取热门标签
+        List&lt;String&gt; tags = hotTagCache.getHots();
+        model.addAttribute(&quot;pagination&quot;, pagination);
+        model.addAttribute(&quot;search&quot;, search);
+        model.addAttribute(&quot;tag&quot;, tag);
+        model.addAttribute(&quot;tags&quot;, tags);
+        model.addAttribute(&quot;sort&quot;, sort);
+        return &quot;index&quot;;
+    }
+</code></pre>
+<h2 id="3-3-service"><a href="#3-3-service" class="headerlink" title="3.3 service"></a>3.3 service</h2><pre><code class="java">    /**
+     *
+     * @param search 搜索栏内容
+     * @param tag  首页热门标签
+     * @param sort 问题排序最新、30天最热、7天最热、最热、消灭零回复(sort = new sort = hot30 sort = hot7 sort = hot sort = no)
+     * @param page
+     * @param size
+     * @return
+     */
+    public PaginationDTO list(String search, String tag, String sort, Integer page, Integer size) {
+
+        //搜索内容预处理
+        if (StringUtils.isNotBlank(search)) {
+            String[] tags = StringUtils.split(search, &quot; &quot;);
+            search = Arrays
+                    .stream(tags)
+                    .filter(StringUtils::isNotBlank)
+                    .map(t -&gt; t.replace(&quot;+&quot;, &quot;&quot;).replace(&quot;*&quot;, &quot;&quot;).replace(&quot;?&quot;, &quot;&quot;))
+                    .filter(StringUtils::isNotBlank)
+                    .collect(Collectors.joining(&quot;|&quot;));
+        }
+
+        PaginationDTO paginationDTO = new PaginationDTO();
+
+        Integer totalPage;
+
+        QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
+        //search=mashiro|hanser，| 方便 sql 正则查询
+        questionQueryDTO.setSearch(search);
+
+        if (StringUtils.isNotBlank(tag)) {
+            tag = tag.replace(&quot;+&quot;, &quot;&quot;).replace(&quot;*&quot;, &quot;&quot;).replace(&quot;?&quot;, &quot;&quot;);
+            questionQueryDTO.setTag(tag);
+        }
+
+        //设置 sort
+        for (SortEnum sortEnum : SortEnum.values()) {
+            if (sortEnum.name().toLowerCase().equals(sort)) {
+                questionQueryDTO.setSort(sort);
+
+                if (sortEnum == SortEnum.HOT7) {
+                      //7天前的时间戳
+                    questionQueryDTO.setTime(System.currentTimeMillis() - 1000L * 60 * 60 * 24 * 7);
+                }
+                if (sortEnum == SortEnum.HOT30) {
+                      //30天前的时间戳
+                    questionQueryDTO.setTime(System.currentTimeMillis() - 1000L * 60 * 60 * 24 * 30);
+                }
+                break;
+            }
+        }
+
+        //设置查询分页数据
+        Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
+
+        if (totalCount % size == 0) {
+            totalPage = totalCount / size;
+        } else {
+            totalPage = totalCount / size + 1;
+        }
+
+        if (page &lt; 1) {
+            page = 1;
+        }
+        if (page &gt; totalPage) {
+            page = totalPage;
+        }
+
+        paginationDTO.setPagination(totalPage, page);
+        Integer offset = page &lt; 1 ? 0 : size * (page - 1);
+        questionQueryDTO.setSize(size);
+        questionQueryDTO.setPage(offset);
+        //questionQueryDTO 数据准备完成，进行查询
+        List&lt;Question&gt; questions = questionExtMapper.selectBySearch(questionQueryDTO);
+        List&lt;QuestionDTO&gt; questionDTOList = new ArrayList&lt;&gt;();
+
+        for (Question question : questions) {
+            User user = userMapper.selectByPrimaryKey(question.getCreator());
+            QuestionDTO questionDTO = new QuestionDTO();
+            BeanUtils.copyProperties(question, questionDTO);
+            questionDTO.setUser(user);
+            questionDTOList.add(questionDTO);
+        }
+
+        paginationDTO.setData(questionDTOList);
+        return paginationDTO;
+    }
+</code></pre>
+<h2 id="3-4-Dao"><a href="#3-4-Dao" class="headerlink" title="3.4 Dao"></a>3.4 Dao</h2><pre><code class="xml">    &lt;select id=&quot;selectBySearch&quot; parameterType=&quot;life.majiang.community.dto.QuestionQueryDTO&quot;
+            resultMap=&quot;BaseResultMap&quot;&gt;
+        select * from QUESTION
+        &lt;where&gt;
+            &lt;if test=&quot;search != null and search != &#39;&#39;&quot;&gt;
+                and title regexp #{search}
+            &lt;/if&gt;
+            &lt;if test=&quot;tag != null and tag != &#39;&#39;&quot;&gt;
+                and tag regexp #{tag}
+            &lt;/if&gt;
+            &lt;if test=&quot;sort != null and sort != &#39;&#39; and sort == &#39;no&#39;&quot;&gt;
+                and comment_count = 0
+            &lt;/if&gt;
+            &lt;if test=&quot;time != null and time != &#39;&#39;&quot;&gt;
+                and gmt_create &gt; #{time}
+            &lt;/if&gt;
+        &lt;/where&gt;
+        &lt;if test=&quot;sort == null or sort == &#39;&#39;&quot;&gt;
+            order by gmt_create desc
+        &lt;/if&gt;
+        &lt;if test=&quot;sort != null and sort != &#39;&#39; and sort == &#39;new&#39;&quot;&gt;
+            order by gmt_create desc
+        &lt;/if&gt;
+        &lt;if test=&quot;sort != null and sort != &#39;&#39; and sort == &#39;no&#39;&quot;&gt;
+            order by gmt_create desc
+        &lt;/if&gt;
+        &lt;if test=&quot;sort != null and sort != &#39;&#39; and (sort == &#39;hot&#39; || sort == &#39;hot7&#39; || sort == &#39;hot30&#39;)&quot;&gt;
+            order by comment_count desc
+        &lt;/if&gt;
+        limit #{page},#{size}
+    &lt;/select&gt;
+</code></pre>
+<h1 id="4-热点tag-定时任务"><a href="#4-热点tag-定时任务" class="headerlink" title="4. 热点tag(定时任务)"></a>4. 热点tag(定时任务)</h1><pre><code class="java">@Component
+@Slf4j
+public class HotTagTasks {
+
+    @Autowired
+    private QuestionMapper questionMapper;
+
+    @Autowired
+    private HotTagCache hotTagCache;
+
+    //定时任务
+    //fixedRate 固定时间执行 单位 ms
+    @Scheduled(fixedRate = 1000 * 60 * 60 * 3)
+    public void hotTagSchedule() {
+        int offset = 0;
+        int limit = 20;
+        log.info(&quot;hotTagSchedule start {}&quot;, new Date());
+        List&lt;Question&gt; list = new ArrayList&lt;&gt;();
+
+        Map&lt;String, Integer&gt; priorities = new HashMap&lt;&gt;();
+        //根据评论数，计算每个tag的热度
+        while (offset == 0 || list.size() == limit) {
+            list = questionMapper.selectByExampleWithRowbounds(new QuestionExample(), new RowBounds(offset, limit));
+            for (Question question : list) {
+                //每个问题的tag是以逗号分割的
+                String[] tags = StringUtils.split(question.getTag(), &quot;,&quot;);
+                for (String tag : tags) {
+                    Integer priority = priorities.get(tag);
+                    if (priority != null) {
+                        priorities.put(tag, priority + 5 + question.getCommentCount());
+                    } else {
+                        priorities.put(tag, 5 + question.getCommentCount());
+                    }
+                }
+            }
+            offset += limit;
+        }
+        hotTagCache.updateTags(priorities);
+        log.info(&quot;hotTagSchedule stop {}&quot;, new Date());
+    }
+}
+</code></pre>
+<p><strong>注意</strong></p>
+<p>测出个人认为应该先查询所有的数据，将所有的tag 计算出 priority ，但是这个时间可能会很长(tag:mashiro)</p>
+<pre><code class="java">@Component
+@Data
+public class HotTagCache {
+    private List&lt;String&gt; hots = new ArrayList&lt;&gt;();
+
+    public void updateTags(Map&lt;String, Integer&gt; tags) {
+        int max = 10;
+        //PriorityQueue 优先队列(小顶堆二叉树结构)保证每次取出的元素
+        PriorityQueue&lt;HotTagDTO&gt; priorityQueue = new PriorityQueue&lt;&gt;(max);
+
+        tags.forEach((name, priority) -&gt; {
+            HotTagDTO hotTagDTO = new HotTagDTO();
+            hotTagDTO.setName(name);
+            hotTagDTO.setPriority(priority);
+            if (priorityQueue.size() &lt; max) {
+                //向小顶堆添加元素
+                priorityQueue.add(hotTagDTO);
+            } else {
+                //获取堆顶元素，元素值最小
+                HotTagDTO minHot = priorityQueue.peek();
+                if (hotTagDTO.compareTo(minHot) &gt; 0) {
+                    //删除堆顶元素,此处新元素大于堆顶元素，删除堆顶元素
+                    priorityQueue.poll();
+                    priorityQueue.add(hotTagDTO);
+                }
+            }
+        });
+
+
+        List&lt;String&gt; sortedTags = new ArrayList&lt;&gt;();
+
+        HotTagDTO poll = priorityQueue.poll();
+        while (poll != null) {
+            sortedTags.add(0, poll.getName());
+            poll = priorityQueue.poll();
+        }
+        hots = sortedTags;
+    }
+}
+</code></pre>
+<p><strong>注意</strong></p>
+<p>保持<code>PriorityQueue</code>队列中，最多存在10个元素，且元素值时最大的10个，即热度最高的10个tag，使用<code>PriorityQueue</code>的原因是，由于是小顶堆的结构，一个新来的元素很快就能找到所属位置，如果使用List的话，每次都是遍历，时间复杂太高。(tag:mashiro)</p>
+<h1 id="5-异常处理"><a href="#5-异常处理" class="headerlink" title="5. 异常处理"></a>5. 异常处理</h1><h2 id="5-1-异常处理标准定义"><a href="#5-1-异常处理标准定义" class="headerlink" title="5.1 异常处理标准定义"></a>5.1 异常处理标准定义</h2><pre><code class="java">public interface ICustomizeErrorCode {
+    String getMessage() ;
+    Integer getCode();
+}
+</code></pre>
+<pre><code class="java">public enum CustomizeErrorCode implements ICustomizeErrorCode {
+
+      //枚举类型
+    QUESTION_NOT_FOUND(2001, &quot;你找到问题不在了，要不要换个试试？&quot;),
+    TARGET_PARAM_NOT_FOUND(2002, &quot;未选中任何问题或评论进行回复&quot;),
+    NO_LOGIN(2003, &quot;当前操作需要登录，请登陆后重试&quot;),
+    SYS_ERROR(2004, &quot;服务冒烟了，要不然你稍后再试试！！！&quot;),
+    TYPE_PARAM_WRONG(2005, &quot;评论类型错误或不存在&quot;),
+    COMMENT_NOT_FOUND(2006, &quot;回复的评论不存在了，要不要换个试试？&quot;),
+    CONTENT_IS_EMPTY(2007, &quot;输入内容不能为空&quot;),
+    READ_NOTIFICATION_FAIL(2008, &quot;兄弟你这是读别人的信息呢？&quot;),
+    NOTIFICATION_NOT_FOUND(2009, &quot;消息莫非是不翼而飞了？&quot;),
+    FILE_UPLOAD_FAIL(2010, &quot;图片上传失败&quot;),
+    INVALID_INPUT(2011, &quot;非法输入&quot;),
+    INVALID_OPERATION(2012, &quot;兄弟，是不是走错房间了？&quot;),
+    ;
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    @Override
+    public Integer getCode() {
+        return code;
+    }
+
+      //成员变量
+    private Integer code;
+    private String message;
+
+      //枚举内的构造函数
+    CustomizeErrorCode(Integer code, String message) {
+        this.message = message;
+        this.code = code;
+    }
+}
+</code></pre>
+<pre><code class="java">public class CustomizeException extends RuntimeException {//继承运行时异常，可以手动抛出异常
+    private String message;
+    private Integer code;
+// 构造函数参数为ICustomizeErrorCode
+    public CustomizeException(ICustomizeErrorCode errorCode) {
+        this.code = errorCode.getCode();
+        this.message = errorCode.getMessage();
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+}
+
+</code></pre>
+<pre><code class="java">throw new CustomizeException(CustomizeErrorCode.INVALID_INPUT);//手动抛出异常
+</code></pre>
+<h2 id="5-2-ControllerAdvice-ExceptionHandler"><a href="#5-2-ControllerAdvice-ExceptionHandler" class="headerlink" title="5.2  @ControllerAdvice @ExceptionHandler"></a>5.2  @ControllerAdvice @ExceptionHandler</h2><pre><code class="java">@ControllerAdvice//注解定义全局异常处理类
+@Slf4j
+public class CustomizeExceptionHandler {
+    @ExceptionHandler(Exception.class)//捕获Exception类及其子类异常
+    ModelAndView handle(Throwable e, Model model, HttpServletRequest request, HttpServletResponse response) {
+        String contentType = request.getContentType();
+        if (&quot;application/json&quot;.equals(contentType)) {
+            ResultDTO resultDTO;
+            // 返回 JSON
+            if (e instanceof CustomizeException) {
+                //异常是new CustomizeException 抛出来的
+                resultDTO = ResultDTO.errorOf((CustomizeException) e);
+            } else {
+                log.error(&quot;handle error&quot;, e);
+                resultDTO = ResultDTO.errorOf(CustomizeErrorCode.SYS_ERROR);
+            }
+            try {
+                response.setContentType(&quot;application/json&quot;);
+                response.setStatus(200);
+                response.setCharacterEncoding(&quot;utf-8&quot;);
+                PrintWriter writer = response.getWriter();
+                writer.write(JSON.toJSONString(resultDTO));
+                writer.close();
+            } catch (IOException ioe) {
+            }
+            return null;
+        } else {
+            // 错误页面跳转
+            if (e instanceof CustomizeException) {
+                model.addAttribute(&quot;message&quot;, e.getMessage());
+            } else {
+                log.error(&quot;handle error&quot;, e);
+                model.addAttribute(&quot;message&quot;, CustomizeErrorCode.SYS_ERROR.getMessage());
+            }
+            return new ModelAndView(&quot;error&quot;);//跳转到error.html
+        }
+    }
+}
+</code></pre>
+<p><code>@ControllerAdvice</code>  + <code>@ExceptionHandler</code>捕获全局异常</p>
+<p><code>throw new CustomizeException(CustomizeErrorCode.INVALID_INPUT);</code>可以捕获类似抛出异常</p>
+<pre><code class="java">@Data
+public class ResultDTO&lt;T&gt; {
+    private Integer code;
+    private String message;
+    private T data;
+
+    public static ResultDTO errorOf(Integer code, String message) {
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setCode(code);
+        resultDTO.setMessage(message);
+        return resultDTO;
+    }
+
+    public static ResultDTO errorOf(CustomizeErrorCode errorCode) {
+        return errorOf(errorCode.getCode(), errorCode.getMessage());
+    }
+
+    public static ResultDTO errorOf(CustomizeException e) {
+        return errorOf(e.getCode(), e.getMessage());
+    }
+
+    public static ResultDTO okOf() {
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setCode(200);
+        resultDTO.setMessage(&quot;请求成功&quot;);
+        return resultDTO;
+    }
+
+    public static &lt;T&gt; ResultDTO okOf(T t) {
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setCode(200);
+        resultDTO.setMessage(&quot;请求成功&quot;);
+        resultDTO.setData(t);
+        return resultDTO;
+    }
+}
+</code></pre>
+<h2 id="5-3-controller"><a href="#5-3-controller" class="headerlink" title="5.3 controller"></a>5.3 controller</h2><pre><code class="java">/*
+    ${server.error.path:${error.path:/error}}
+        如果 server.error.path 未配置,则使用 ${error.path:/error}
+
+        如果 error.path 未配置,则使用 &quot;/error&quot;
+*/
+@Controller
+@RequestMapping(&quot;${server.error.path:${error.path:/error}}&quot;)
+public class CustomizeErrorController implements ErrorController {
+
+    @Override
+    public String getErrorPath() {
+        return &quot;error&quot;;
+    }
+
+    @RequestMapping(produces = MediaType.TEXT_HTML_VALUE)//设置返回的数据类型
+    public ModelAndView errorHtml(HttpServletRequest request, Model model) {
+        HttpStatus status = getStatus(request);
+
+        if (status.is4xxClientError()) {
+            model.addAttribute(&quot;message&quot;, &quot;你这个请求错了吧，要不然换个姿势？&quot;);
+        }
+        if (status.is5xxServerError()) {
+            model.addAttribute(&quot;message&quot;, &quot;服务冒烟了，要不然你稍后再试试！！！&quot;);
+        }
+
+        return new ModelAndView(&quot;error&quot;);
+    }
+
+    private HttpStatus getStatus(HttpServletRequest request) {
+        Integer statusCode = (Integer) request
+                .getAttribute(&quot;javax.servlet.error.status_code&quot;);
+        if (statusCode == null) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        try {
+            return HttpStatus.valueOf(statusCode);
+        } catch (Exception ex) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+}
+</code></pre>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/appreciation/aplipay.png"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/appreciation/aplipay.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2021/01/18/技术/码问社区知识点拆解 - 2/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                码问社区知识点拆解(2)</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2021/01/17/技术/Java 语法/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                Java语法</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "4asHXF3SLvCKEfXTHBmYKjpi-MdYXbMMI",
+        appKey: "xXS4NNFP7X7Su7AIwt86pHXj",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="/#" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico" itemprop="image" alt="Yukino" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="/#" itemprop="url" rel="author">Yukino</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div> 
+    <!--站内搜索模块-->   
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input
+        type="text"
+        class="ins-search-input"
+        placeholder="请输入关键词..."
+      />
+      <span class="ins-close ins-selectable"
+        ><i class="fa fa-times-circle"></i
+      ></span>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<!--yukino:script中的变量是用于站内搜索-->
+<script>
+  //function后面的变量window是形参，最后window是传入的实际参数。
+  (function (window) {
+    var INSIGHT_CONFIG = {
+      TRANSLATION: {
+        //yukino:insight变量是来自zh-cn.yml,但是怎么获取的不清楚，为何是zh-cn.yml而非en.yml也不清楚
+        POSTS: '文章',
+        // PAGES: '页面',
+        CATEGORIES: '分类',
+        TAGS: '标签',
+      },
+      ROOT_URL: "/",
+      CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 yukino<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2020</p>
+    </div>
+    <div class="footer-device">
+      <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank"
+            style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i
+            class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a
+            href="https://2heng.xin/" target="_blank"
+            style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a
+            href="https://www.hojun.cn/" target="_blank"
+            style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo,
+          Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+  /* <![CDATA[ */
+  if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    var Poi = { "pjax": "1", "movies": { "url": "https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/video", "name": "yukino_360p.mp4", "live": "close" }, "windowheight": "fixed", "codelamp": "close", "ajaxurl": "", "order": "asc", "formpostion": "bottom" };
+  } else {
+    var Poi = { "pjax": "1", "movies": { "url": "https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/video", "name": "yukino_360p.mp4", "live": "open" }, "windowheight": "auto", "codelamp": "close", "ajaxurl": "", "order": "asc", "formpostion": "bottom" };
+  }
+/* ]]> */
+
+</script>
+<script>
+  $(document).ready(function () {
+    if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+      if ($(".pattern-center").length > 0) { //有图的情况
+        tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+        });
+      } else {
+        tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+        });
+      }
+      var offsetTop = $('.toc').offset().top - 95;
+      window.onscroll = function () {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop >= offsetTop) {
+          $('.toc').addClass('toc-fixed');
+        } else {
+          $('.toc').removeClass('toc-fixed');
+        }
+      }
+    }
+  });
+</script>
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">Yukino</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/Yukino831143" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="http://weibo.com/mashirozx?is_all=1" class="fa fa-weibo" target="_blank" style="color: #dd4b39; margin-left:20px"></a>
+      
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=954655431&site=qq&menu=yes" class="fa fa-qq" target="_blank" style="color: #25c6fe; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/随想/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/番剧/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番剧
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/读书/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  读书
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="363423188"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>

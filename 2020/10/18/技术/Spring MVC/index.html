@@ -1,0 +1,1403 @@
+<!-- yukino:_partial/head.ejs主要完成一些页面初始化工作，但是在页面上基本表现不出来 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    
+    <title itemprop="name">
+      Spring MVC | yukino
+    </title>
+    <!-- yukino:这里是网页标签的小图标 -->
+    
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/css/lib.min.css" media="all">
+    <link rel="stylesheet" href="/css/font.css" media="all">
+    <link rel="stylesheet" href="/css/insight.css" media="all">
+    <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+    <link rel="stylesheet" href="/css/zoom.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+    <!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+    <script>
+      /*Initial Variables*/
+      var mashiro_option = new Object();
+      var mashiro_global = new Object();
+      mashiro_option.NProgressON = true;
+      /*
+       * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+       * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+       */
+      mashiro_option.email_domain = "";
+      mashiro_option.email_name = "";
+      mashiro_option.cookie_version_control = "";
+      mashiro_option.qzone_autocomplete = false;
+      mashiro_option.site_name = "Yukino";
+      mashiro_option.author_name = "";
+      mashiro_option.site_url = "/";
+      mashiro_option.v_appId = "4asHXF3SLvCKEfXTHBmYKjpi-MdYXbMMI";
+      mashiro_option.v_appKey = "xXS4NNFP7X7Su7AIwt86pHXj";
+      mashiro_option.mathjax = "0";
+      mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/";
+      mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+      // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+      // mashiro_option.float_player_on = true;
+
+      /*End of Initial Variables*/
+    </script>
+    <script type="text/javascript">
+      var bg = "https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/1.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/2.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/3.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/4.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/5.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/6.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/7.webp,https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/cover/8.webp".split(",");
+      var bgindex = Math.floor(Math.random() * bg.length);
+      if (!!window.ActiveXObject || "ActiveXObject" in window) {
+        //is IE?
+        alert("朋友，IE浏览器未适配哦~");
+      }
+    </script>
+    <style type="text/css">
+      .hljs-ln {
+        border-collapse: collapse;
+      }
+      .hljs-ln td {
+        padding: 0;
+      }
+      .hljs-ln-n:before {
+        content: attr(data-line-number);
+      }
+    </style>
+    <style type="text/css">
+      .site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+    </style>
+  </head>
+</html>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <!--yukino:显示多种社交联系方式,视频播放器,首页下滑箭头-->
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="/">
+          <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico" />
+        </a>
+      </div>
+      <div class="header-info">
+        <p>やはり俺の青春ラブコメはまちがっている</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img
+              class="flipx"
+              src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/next-b.svg"
+            />
+          </li>
+          <!--yukino:显示多种社交联系方式-->
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="github"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/github.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="jianshu"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/jianshu.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="sina"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/sina.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="wangyiyun"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/wangyiyun.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="zhihu"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/zhihu.png" />
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/#"
+              target="_blank"
+              class="social-github"
+              title="email"
+            >
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/email.svg" />
+            </a>
+          </li>
+            
+          <li class="wechat">
+            <a href="/#">
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/social/wechat.png" />
+            </a>
+            <div class="wechatInner">
+              <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/social/wechat.png" />
+            </div>
+          </li>
+            
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/next-b.svg" />
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <!--yukino:播放器-->
+  <div id="video-container" style="">
+    <video
+      style="object-fit: fill;"
+      id="bgvideo"
+      class="video"
+      video-name=""
+      src=""
+      width="auto"
+      preload="auto"
+    ></video>
+    <div id="video-btn" class="loadvideo videolive"></div>
+    <div id="video-add"></div>
+    <div class="video-stu"></div>
+  </div>
+  <!--下滑箭头，点击箭头，页面从主页壁纸滑向博客页面-->
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true"> </i>
+    </span>
+  </div>
+</div>
+
+    <div id="page" class="site wrapper">
+      <!--yukino:头部的menu部分，首页，归档，清单，友人帐...-->
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">Yukino</span>
+            <span class="shironeko"></span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search"> </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1"></div>
+      <div class="line line2"></div>
+      <div class="line line3"></div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <!--yukino:头部的menu部分，首页，归档，清单，友人帐...-->
+          <ul id="menu-new" class="menu">
+            
+            <li>
+              <a href="/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-fort-awesome faa-shake"
+                    aria-hidden="true"
+                  ></i>
+                  首页
+                </span>
+              </a>
+              
+            </li>
+            
+            <li>
+              <a href="/archives">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-archive faa-shake"
+                    aria-hidden="true"
+                  ></i>
+                  归档
+                </span>
+              </a>
+              
+              <ul class="sub-menu">
+                
+                <li>
+                  <a
+                    href="/categories/技术/"
+                  >
+                    <i
+                      class="fa fa-code"
+                      aria-hidden="true"
+                    ></i>
+                    技术
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/生活/"
+                  >
+                    <i
+                      class="fa fa-file-text-o"
+                      aria-hidden="true"
+                    ></i>
+                    生活
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/随想/"
+                  >
+                    <i
+                      class="fa fa-commenting-o"
+                      aria-hidden="true"
+                    ></i>
+                    随想
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/番剧/"
+                  >
+                    <i
+                      class="fa fa-film faa-vertical"
+                      aria-hidden="true"
+                    ></i>
+                    番剧
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/categories/读书/"
+                  >
+                    <i
+                      class="fa fa-th-list faa-bounce"
+                      aria-hidden="true"
+                    ></i>
+                    读书
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/music/"
+                  >
+                    <i
+                      class="fa fa-headphones"
+                      aria-hidden="true"
+                    ></i>
+                    歌单
+                  </a>
+                </li>
+                
+              </ul>
+              
+            </li>
+            
+            <li>
+              <a href="/comment/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-pencil-square-o faa-tada"
+                    aria-hidden="true"
+                  ></i>
+                  留言板
+                </span>
+              </a>
+              
+            </li>
+            
+            <li>
+              <a href="/donate/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-heart faa-pulse"
+                    aria-hidden="true"
+                  ></i>
+                  赞赏
+                </span>
+              </a>
+              
+            </li>
+            
+            <li>
+              <a href="/">
+                <span class="faa-parent animated-hover">
+                  <i
+                    class="fa fa-leaf faa-wrench"
+                    aria-hidden="true"
+                  ></i>
+                  关于
+                </span>
+              </a>
+              
+              <ul class="sub-menu">
+                
+                <li>
+                  <a
+                    href="/about/"
+                  >
+                    <i
+                      class="fa fa-meetup"
+                      aria-hidden="true"
+                    ></i>
+                    我？
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/theme-sakura/"
+                  >
+                    <i
+                      class="fa iconfont icon-sakura"
+                      aria-hidden="true"
+                    ></i>
+                    主题
+                  </a>
+                </li>
+                
+                <li>
+                  <a
+                    href="/lab/"
+                  >
+                    <i
+                      class="fa fa-cogs"
+                      aria-hidden="true"
+                    ></i>
+                    Lab
+                  </a>
+                </li>
+                
+              </ul>
+              
+            </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <!--文章详情页的banner从使用封面图片，修改为自定义，使用md文章中的属性 banner 20200712-->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/banner/1.jpg);" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/banner/1.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      Spring MVC</h1>
+      <p class="entry-census">
+        <span>
+          <a href="/#">
+            <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico">
+          </a>
+        </span>
+        <span>
+          <a href="/#">Yukino</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2020-10-18<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1.环境配置"></a>1.环境配置</h1><pre><code class="Xml">&lt;!--web.xml--&gt;
+    &lt;servlet&gt;
+        &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
+        &lt;!--
+            DispatcherServlet是Spring MVC最核心的对象
+            DispatcherServlet用于拦截Http请求,
+            并根据请求的URL调用与之对应的Controller方法,来完成Http请求的处理
+        --&gt;
+        &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+        &lt;!--applicationContext.xml--&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+            &lt;param-value&gt;classpath:applicationContext.xml&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;!--
+            在Web应用启动时自动创建Spring IOC容器,
+            并初始化DispatcherServlet
+        --&gt;
+        &lt;load-on-startup&gt;0&lt;/load-on-startup&gt;
+    &lt;/servlet&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
+        &lt;!--&quot;/&quot; 代表拦截所有请求--&gt;
+        &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;    
+</code></pre>
+<pre><code class="Xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;
+       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:mv=&quot;http://www.springframework.org/schema/mvc&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/mvc
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;&gt;
+    &lt;!--
+    context:component-scan 标签作用
+    在Spring IOC初始化过程中,自动创建并管理com.imooc.springmvc及子包中
+    拥有以下注解的对象.
+    @Repository
+    @Service
+    @Controller
+    @Component
+    --&gt;
+    &lt;context:component-scan base-package=&quot;com.imooc.springmvc&quot;&gt;&lt;/context:component-scan&gt;
+
+    &lt;!--1.启用Spring MVC的注解开发模式--&gt;
+    &lt;mvc:annotation-driven conversion-service=&quot;conversionService&quot;&gt;    &lt;/mvc:annotation-driven&gt;
+    &lt;!-- 将图片/JS/CSS等静态资源排除在外,可提高执行效率 --&gt;
+    &lt;mvc:default-servlet-handler/&gt;
+</code></pre>
+<h1 id="2-URL-Mapping注解"><a href="#2-URL-Mapping注解" class="headerlink" title="2.URL Mapping注解"></a>2.URL Mapping注解</h1><p><strong>作用</strong><br>URL Mapping将URL与Controller方法进行绑定</p>
+<ul>
+<li>RequestMapping - 通用绑定</li>
+<li>GetMaping - 绑定Get请求</li>
+<li>PostMapping - 绑定Post请求</li>
+</ul>
+<p>前端Post 请求</p>
+<pre><code class="Html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form action=&quot;/um/p1&quot; method=&quot;post&quot;&gt;
+        &lt;input name=&quot;username&quot;&gt; &lt;br&gt;
+        &lt;input name=&quot;password&quot;&gt; &lt;br&gt;
+        &lt;input name=&quot;createTime&quot;&gt; &lt;br&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<pre><code class="Java">@Controller
+@RequestMapping(&quot;/um&quot;) //为所有类的映射都添加一个前缀
+public class URLMappingController {
+    @GetMapping(&quot;/g&quot;)
+    @ResponseBody
+    //manager_name参数映射到String managerName
+    //Date createTime 是使用MyDateConverter类在applicationContext.xml配置进行日期转换的
+    public String getMapping(@RequestParam(&quot;manager_name&quot;) String managerName,Date createTime){
+        System.out.println(&quot;managerName:&quot; + managerName);
+        System.out.println(createTime);
+        return &quot;This is get method&quot;;
+    }
+
+    @PostMapping(&quot;/p&quot;)
+    @ResponseBody
+    public String postMapping(String username, Long password) {
+        System.out.println(username + &quot;:&quot; + password);
+        return &quot;This is post method&quot;;
+    }
+
+    @PostMapping(&quot;/p1&quot;)
+    @ResponseBody
+    //1.可以用对象User进行接收Post参数，其中createTime字段，在User类中，需要使用DateTimeFormat
+    //2.单独接收createTime 时，也可以形式参数中@DateTimeFormat，指明格式
+    //3.String username也可以接收到数据
+    public String postMapping(User user, String username, @DateTimeFormat(pattern = &quot;yyyy-MM-dd&quot;) Date createTime) {
+        System.out.println(user.getUsername() + &quot;:&quot; + user.getPassword());
+        System.out.println(&quot;date:&quot; + user.getCreateTime());
+        return &quot;&lt;h1&gt;这是Post响应&lt;/h1&gt;&quot;;
+    }
+}
+</code></pre>
+<pre><code class="Java">public class User {
+    private String username;
+    private Long password;
+    @DateTimeFormat(pattern = &quot;yyyy-MM-dd&quot;)
+    private Date createTime;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Long getPassword() {
+        return password;
+    }
+
+    public void setPassword(Long password) {
+        this.password = password;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+}
+</code></pre>
+<h1 id="3-接收表单复杂数据"><a href="#3-接收表单复杂数据" class="headerlink" title="3.接收表单复杂数据"></a>3.接收表单复杂数据</h1><pre><code class="Html">&lt;div class=&quot;container&quot;&gt;
+    &lt;h2&gt;学员调查问卷&lt;/h2&gt;
+    &lt;form action=&quot;./apply&quot; method=&quot;post&quot;&gt;
+        &lt;h3&gt;您的姓名&lt;/h3&gt;
+        &lt;input name=&quot;name&quot; class=&quot;text&quot;  style=&quot;width: 150px&quot;&gt;
+        &lt;h3&gt;您正在学习的技术方向&lt;/h3&gt;
+        &lt;select name=&quot;course&quot; style=&quot;width: 150px&quot;&gt;
+            &lt;option value=&quot;java&quot;&gt;Java&lt;/option&gt;
+            &lt;option value=&quot;h5&quot;&gt;HTML5&lt;/option&gt;
+            &lt;option value=&quot;python&quot;&gt;Python&lt;/option&gt;
+            &lt;option value=&quot;php&quot;&gt;PHP&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;div&gt;
+            &lt;h3&gt;您的学习目的：&lt;/h3&gt;
+            &lt;input type=&quot;checkbox&quot; name=&quot;purpose&quot; value=&quot;1&quot;&gt;就业找工作
+            &lt;input type=&quot;checkbox&quot; name=&quot;purpose&quot; value=&quot;2&quot;&gt;工作要求
+            &lt;input type=&quot;checkbox&quot; name=&quot;purpose&quot; value=&quot;3&quot;&gt;兴趣爱好
+            &lt;input type=&quot;checkbox&quot; name=&quot;purpose&quot; value=&quot;4&quot;&gt;其他
+        &lt;/div&gt;
+        &lt;div style=&quot;text-align: center;padding-top:10px&quot; &gt;
+            &lt;input type=&quot;submit&quot; value=&quot;提交&quot; style=&quot;width:100px&quot;&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+
+&lt;/div&gt;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/20201020013601.png" alt="image"></p>
+<pre><code class="Java">@Controller
+public class FormContoller {
+    @PostMapping(&quot;/apply&quot;)
+    @ResponseBody
+    //1.@RequestParam 指定接收到的参数为n,默认值为&quot;ANON&quot;,可避免无法匹配到参数时，出现的异常
+    //2.复选框使用数组Integer[] purpose，接收
+    public String apply(@RequestParam(value = &quot;n&quot;, defaultValue = &quot;ANON&quot;) String name, String course, Integer[] purpose) {
+        System.out.println(&quot;name:&quot; + name);
+        System.out.println(&quot;course:&quot; + course);
+        for(Integer p : purpose){
+            System.out.println(&quot;purpose:&quot; + p);
+        }
+        return &quot;SUCCES&quot;;
+    }
+
+//    @PostMapping(&quot;/apply&quot;)
+    @ResponseBody
+    //@RequestParam表示将接收到的数据转换成List，一定要加
+    public String apply(String name, String course, @RequestParam List&lt;Integer&gt; purpose){
+        System.out.println(&quot;name:&quot; + name);
+        System.out.println(&quot;course:&quot; + course);
+        for(Integer p : purpose){
+            System.out.println(&quot;purpose:&quot; + p);
+        }
+        return &quot;SUCCES&quot;;
+    }
+
+//    @PostMapping(&quot;/apply&quot;)
+    @ResponseBody
+    //以对象方式接收参数
+    public String  apply(Form form) {
+        System.out.println(form.getName());
+        System.out.println(form.getCourse());
+        for(Integer p : form.getPurpose()) {
+            System.out.println(p);
+        }
+        return &quot;SUCCESS&quot;;
+    }
+//    @PostMapping(&quot;/apply&quot;)
+    @ResponseBody
+    //注意Map类型最好不要用因为Map类型对于传过来的purpose参数，对于复杂类型，如复选框，只会取第一个值。漏掉数据
+    public String apply(@RequestParam Map map){
+        System.out.println(map);
+        return &quot;SUCCESS&quot;;
+    }
+}
+</code></pre>
+<pre><code class="Java">public class Form {
+    private String name;
+    private String course;
+    private List&lt;Integer&gt; purpose;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public List&lt;Integer&gt; getPurpose() {
+        return purpose;
+    }
+
+    public void setPurpose(List&lt;Integer&gt; purpose) {
+        this.purpose = purpose;
+    }
+}
+</code></pre>
+<h1 id="4-关联对象赋值"><a href="#4-关联对象赋值" class="headerlink" title="4.关联对象赋值"></a>4.关联对象赋值</h1><pre><code class="Html">    &lt;h2&gt;学员调查问卷&lt;/h2&gt;
+    &lt;form action=&quot;./apply&quot; method=&quot;post&quot;&gt;
+        &lt;h3&gt;您的姓名&lt;/h3&gt;
+        &lt;input name=&quot;name&quot; class=&quot;text&quot;  style=&quot;width: 150px&quot;&gt;
+        &lt;h3&gt;您正在学习的技术方向&lt;/h3&gt;
+        &lt;select name=&quot;course&quot; style=&quot;width: 150px&quot;&gt;
+            &lt;option value=&quot;java&quot;&gt;Java&lt;/option&gt;
+            &lt;option value=&quot;h5&quot;&gt;HTML5&lt;/option&gt;
+            &lt;option value=&quot;python&quot;&gt;Python&lt;/option&gt;
+            &lt;option value=&quot;php&quot;&gt;PHP&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;div&gt;
+            &lt;h3&gt;您的学习目的：&lt;/h3&gt;
+            &lt;input type=&quot;checkbox&quot; name=&quot;purpose&quot; value=&quot;1&quot;&gt;就业找工作
+            &lt;input type=&quot;checkbox&quot; name=&quot;purpose&quot; value=&quot;2&quot;&gt;工作要求
+            &lt;input type=&quot;checkbox&quot; name=&quot;purpose&quot; value=&quot;3&quot;&gt;兴趣爱好
+            &lt;input type=&quot;checkbox&quot; name=&quot;purpose&quot; value=&quot;4&quot;&gt;其他
+        &lt;/div&gt;
+        &lt;h3&gt;收货人&lt;/h3&gt;
+        &lt;input name=&quot;delivery.name&quot; class=&quot;text&quot; style=&quot;width: 150px&quot;&gt;
+        &lt;h3&gt;联系电话&lt;/h3&gt;
+        &lt;input name=&quot;delivery.mobile&quot; class=&quot;text&quot; style=&quot;width: 150px&quot;&gt;
+        &lt;h3&gt;收货地址&lt;/h3&gt;
+        &lt;input name=&quot;delivery.address&quot; class=&quot;text&quot; style=&quot;width: 150px&quot;&gt;
+
+        &lt;div style=&quot;text-align: center;padding-top:10px&quot; &gt;
+            &lt;input type=&quot;submit&quot; value=&quot;提交&quot; style=&quot;width:100px&quot;&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+</code></pre>
+<ul>
+<li>delivery.name</li>
+<li>delivery.mobile</li>
+<li>delivery.address</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/blogImageHosting/20201020013648.png" alt="image"></p>
+<pre><code class="Java">public class Delivery {
+    private String name;
+    private String address;
+    private String mobile;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+}
+</code></pre>
+<pre><code class="Java">public class Form {
+    private String name;
+    private String course;
+    private List&lt;Integer&gt; purpose;
+    private Delivery delivery = new Delivery();//关联对象
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public List&lt;Integer&gt; getPurpose() {
+        return purpose;
+    }
+
+    public void setPurpose(List&lt;Integer&gt; purpose) {
+        this.purpose = purpose;
+    }
+}
+</code></pre>
+<pre><code class="Java">    @PostMapping(&quot;/apply&quot;)
+    @ResponseBody
+    //注意Map类型最好不要用因为Map类型对于传过来的purpose参数，只会取第一个
+    public String applyDelivery(Form form){
+        System.out.println(form.getDelivery().getName());
+        return &quot;SUCCESS&quot;;
+    }
+</code></pre>
+<h1 id="5-日期转换"><a href="#5-日期转换" class="headerlink" title="5.日期转换"></a>5.日期转换</h1><ul>
+<li>@DateTimeFormat<br>指定格式，将String 类型转换称日期类型<pre><code class="Java">  @PostMapping(&quot;/p1&quot;)
+  @ResponseBody
+  //1.可以用对象User进行接收Post参数，其中createTime字段，在User类中，需要使用DateTimeFormat
+  //2.单独接收createTime 时，也可以形式参数中@DateTimeFormat，指明格式
+  public String postMapping(User user, String username, @DateTimeFormat(pattern = &quot;yyyy-MM-dd&quot;) Date createTime) {
+      System.out.println(user.getUsername() + &quot;:&quot; + user.getPassword());
+      System.out.println(&quot;date:&quot; + user.getCreateTime());
+      return &quot;&lt;h1&gt;这是Post响应&lt;/h1&gt;&quot;;
+  }
+</code></pre>
+</li>
+<li><p>对象成员 注解</p>
+<pre><code class="Java">public class User {
+  private String username;
+  private Long password;
+  //@DateTimeFormat(pattern = &quot;yyyy-MM-dd&quot;)
+  private Date createTime;
+
+  public String getUsername() {
+      return username;
+  }
+
+  public void setUsername(String username) {
+      this.username = username;
+  }
+
+  public Long getPassword() {
+      return password;
+  }
+
+  public void setPassword(Long password) {
+      this.password = password;
+  }
+
+  public Date getCreateTime() {
+      return createTime;
+  }
+
+  public void setCreateTime(Date createTime) {
+      this.createTime = createTime;
+  }
+}
+</code></pre>
+<pre><code class="Java">  public String postMapping(User user, String username, @DateTimeFormat(pattern = &quot;yyyy-MM-dd&quot;) Date createTime) {
+      System.out.println(user.getUsername() + &quot;:&quot; + user.getPassword());
+      System.out.println(&quot;date:&quot; + user.getCreateTime());
+      return &quot;&lt;h1&gt;这是Post响应&lt;/h1&gt;&quot;;
+  }
+</code></pre>
+<p>User 对象的成员变量自动转换</p>
+</li>
+<li>自定义日期转换类</li>
+</ul>
+<pre><code class="Java">//日期转换
+public class MyDateConverter implements Converter&lt;String, Date&gt; {
+    public Date convert(String s) {
+        SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+        try {
+            Date d = sdf.parse(s);
+            return d;
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+}
+</code></pre>
+<pre><code class="Xml">&lt;!--applicationContext.xml--&gt;
+    &lt;mvc:annotation-driven conversion-service=&quot;conversionService&quot;&gt;&lt;/mvc:annotation-driven&gt;
+    &lt;bean id=&quot;conversionService&quot; class=&quot;org.springframework.format.support.FormattingConversionServiceFactoryBean&quot;&gt;
+        &lt;property name=&quot;converters&quot;&gt;
+            &lt;set&gt;
+                &lt;!--指定日期转换类--&gt;
+                &lt;bean class=&quot;com.imooc.springmvc.converter.MyDateConverter&quot;/&gt;
+            &lt;/set&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+</code></pre>
+<pre><code class="Java">    @GetMapping(&quot;/g&quot;)
+    @ResponseBody
+    //manager_name参数映射到String managerName
+    //Date createTime 是使用MyDateConverter类在applicationContext.xml配置进行日期转换的
+    public String getMapping(@RequestParam(&quot;manager_name&quot;) String managerName,Date createTime){
+        System.out.println(&quot;managerName:&quot; + managerName);
+        System.out.println(createTime);
+        return &quot;This is get method&quot;;
+    }
+</code></pre>
+<p>Date createTime 没有加注解，也可以转换</p>
+<p>注意：注解与自定义日期转换类同时存在时，以日期转换类优先</p>
+<h1 id="6-中文乱码问题"><a href="#6-中文乱码问题" class="headerlink" title="6.中文乱码问题"></a>6.中文乱码问题</h1><ul>
+<li>Get乱码问题 - server.xml增加URIEncoding属性</li>
+<li>Post请求乱码 - Web.xml 配置 CharacterEncodingFilter</li>
+<li>Response响应乱码 - spring配置StringHttpMessageConverter</li>
+</ul>
+<h2 id="6-1-get"><a href="#6-1-get" class="headerlink" title="6.1 get"></a>6.1 get</h2><p>Path:”Tomcat v8.5 Server at localhost-config\server.xml”</p>
+<pre><code class="Xml">&lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot; URIEncoding=&quot;UTF-8&quot;/&gt;
+</code></pre>
+<p>在tomcat8 以下的版本需要增加URIEncoding，以上版本默认是UTF-8</p>
+<h2 id="6-2-post"><a href="#6-2-post" class="headerlink" title="6.2 post"></a>6.2 post</h2><p>通过过滤器来实现post编码</p>
+<pre><code class="Xml">&lt;!--web.xml--&gt;
+    &lt;filter&gt;
+        &lt;filter-name&gt;characterFilter&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;encoding&lt;/param-name&gt;
+            &lt;param-value&gt;UTF-8&lt;/param-value&gt;
+        &lt;/init-param&gt;
+    &lt;/filter&gt;
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;characterFilter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+</code></pre>
+<h2 id="6-3-Response"><a href="#6-3-Response" class="headerlink" title="6.3 Response"></a>6.3 Response</h2><pre><code class="Xml">&lt;!--applicationContext.xml--&gt;
+    &lt;!--3.message-converters 配置Response响应字符集--&gt;
+    &lt;mvc:annotation-driven conversion-service=&quot;conversionService&quot;&gt;
+        &lt;mvc:message-converters&gt;
+            &lt;bean class=&quot;org.springframework.http.converter.StringHttpMessageConverter&quot;&gt;
+                &lt;property name=&quot;supportedMediaTypes&quot;&gt;
+                    &lt;list&gt;
+                        &lt;!-- response.setContentType(&quot;text/html;charset=utf-8&quot;) --&gt;
+                        &lt;value&gt;text/plain;charset=utf-8&lt;/value&gt;
+                        &lt;value&gt;text/html;charset=utf-8&lt;/value&gt;
+                    &lt;/list&gt;
+                &lt;/property&gt;
+            &lt;/bean&gt;
+        &lt;/mvc:message-converters&gt;
+    &lt;/mvc:annotation-driven&gt;
+</code></pre>
+<h1 id="7-响应输出"><a href="#7-响应输出" class="headerlink" title="7.响应输出"></a>7.响应输出</h1><h2 id="7-1-ModelAndView"><a href="#7-1-ModelAndView" class="headerlink" title="7.1 ModelAndView"></a>7.1 ModelAndView</h2>
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/appreciation/aplipay.png"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/appreciation/aplipay.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2020/10/19/技术/Restful/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                Restful风格</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2020/10/18/技术/Spring 事务管理/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/article_cover/">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                Spring 事务管理</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "4asHXF3SLvCKEfXTHBmYKjpi-MdYXbMMI",
+        appKey: "xXS4NNFP7X7Su7AIwt86pHXj",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="/#" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico" itemprop="image" alt="Yukino" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="/#" itemprop="url" rel="author">Yukino</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div> 
+    <!--站内搜索模块-->   
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input
+        type="text"
+        class="ins-search-input"
+        placeholder="请输入关键词..."
+      />
+      <span class="ins-close ins-selectable"
+        ><i class="fa fa-times-circle"></i
+      ></span>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<!--yukino:script中的变量是用于站内搜索-->
+<script>
+  //function后面的变量window是形参，最后window是传入的实际参数。
+  (function (window) {
+    var INSIGHT_CONFIG = {
+      TRANSLATION: {
+        //yukino:insight变量是来自zh-cn.yml,但是怎么获取的不清楚，为何是zh-cn.yml而非en.yml也不清楚
+        POSTS: '文章',
+        // PAGES: '页面',
+        CATEGORIES: '分类',
+        TAGS: '标签',
+      },
+      ROOT_URL: "/",
+      CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 yukino<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2020</p>
+    </div>
+    <div class="footer-device">
+      <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank"
+            style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i
+            class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a
+            href="https://2heng.xin/" target="_blank"
+            style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a
+            href="https://www.hojun.cn/" target="_blank"
+            style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo,
+          Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+  /* <![CDATA[ */
+  if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    var Poi = { "pjax": "1", "movies": { "url": "https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/video", "name": "yukino_360p.mp4", "live": "close" }, "windowheight": "fixed", "codelamp": "close", "ajaxurl": "", "order": "asc", "formpostion": "bottom" };
+  } else {
+    var Poi = { "pjax": "1", "movies": { "url": "https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/video", "name": "yukino_360p.mp4", "live": "open" }, "windowheight": "auto", "codelamp": "close", "ajaxurl": "", "order": "asc", "formpostion": "bottom" };
+  }
+/* ]]> */
+
+</script>
+<script>
+  $(document).ready(function () {
+    if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+      if ($(".pattern-center").length > 0) { //有图的情况
+        tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+        });
+      } else {
+        tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+        });
+      }
+      var offsetTop = $('.toc').offset().top - 95;
+      window.onscroll = function () {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop >= offsetTop) {
+          $('.toc').addClass('toc-fixed');
+        } else {
+          $('.toc').removeClass('toc-fixed');
+        }
+      }
+    }
+  });
+</script>
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/Yukino831143/CDN/img/yukino/avatar/a26.ico">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">Yukino</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/Yukino831143" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="http://weibo.com/mashirozx?is_all=1" class="fa fa-weibo" target="_blank" style="color: #dd4b39; margin-left:20px"></a>
+      
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=954655431&site=qq&menu=yes" class="fa fa-qq" target="_blank" style="color: #25c6fe; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/随想/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/番剧/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番剧
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/读书/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  读书
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="363423188"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>
